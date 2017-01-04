@@ -13,28 +13,40 @@ public class Lexer
 	public static enum TokenType 
 	{
 		NUMBER("-?[0-9]+"),
-		BINARYOP("xor|and|or"),
-		EVOLVE("evolve"), 
-		STATE("state"),
-		TO("to"),
-		WHEN("when"),
+		BINARYOP("(xor|and|or)\\b"),
+		EVOLVE("evolve\\b"), 
+		STATE("state\\b"),
+		TO("to\\b"),
+		WHEN("when\\b"),
 		COMMA(","),
 		EQUAL("="),
 		IN("in"),
-		IDENTIFIER("[a-zA-Z][0-9a-zA-Z]+"),
+		IDENTIFIER("([a-zA-Z][0-9a-zA-Z]+)\\b"),
 		LEFTP("\\("),
 		RIGHTP("\\)"),
 		LEFTPS("\\["),
 		RIGHTPS("\\]"),
-		BOOLEAN("true|false|guess"),
+		BOOLEAN("(true|false|guess)\\b"),
 		COORDINATE("(-?[0-9]+,-?[0-9]+)"),
-		EXANUMBER("#[0-9a-fA-F]+");
+		EXANUMBER("(#[0-9a-fA-F]+)\\b");
 		  
-		public final String pattern;
+		public final Pattern pattern;
 		
 		private TokenType(String pattern) 
 		{
-			this.pattern = pattern;
+			this.pattern = Pattern.compile("^" + pattern);
+		}
+	}
+	
+	public static enum IgnoreTokenType
+	{
+		WHITESPACE("\\s+");
+		
+		public final Pattern pattern;
+		
+		IgnoreTokenType(String pattern)
+		{
+			this.pattern = Pattern.compile("^" + pattern);
 		}
 	}
 	
@@ -58,19 +70,34 @@ public class Lexer
 		}
 	}
 	
-	public static Token lex(String token) throws InvalidTokenException 
+	private String text;
+	
+	public Lexer(String text)
 	{
-
-	    // Lexer logic begins here
-	    for (TokenType tokenType : TokenType.values())
+		this.text = text;
+	}
+	
+	public Token lex() throws InvalidTokenException 
+	{
+	   if(text.length() == 0) return new Token(TokenType.IDENTIFIER, "EOF");
+		
+	    for(IgnoreTokenType ignore : IgnoreTokenType.values())
 	    {
-	    	//System.out.println(tokenType.pattern);
-	    	Pattern p=Pattern.compile(tokenType.pattern);
-			Matcher m=p.matcher(token);
-			if(m.matches())
+	    	Matcher match = ignore.pattern.matcher(text);
+			if(match.find()) {
+				text = text.substring(match.end(), text.length());
+				return lex();
+			}
+	    }
+		
+		for (TokenType tokenType : TokenType.values())
+	    {
+			Matcher match = tokenType.pattern.matcher(text);
+			if(match.find())
 			{
-				return new Token(tokenType,token);
-			};
+				text = text.substring(match.end(), text.length());
+				return new Token(tokenType, match.group());
+			}
 	    }
 	    throw new InvalidTokenException();
 	}
@@ -93,10 +120,14 @@ public class Lexer
 	//To try this class
 	public static void main (String[] args) throws InvalidTokenException
 	{
-		String[] tokens = getCodeFromFile("gol.txt").replace("\n", " ").replace("\t", " ").split(" +");
-		for (String s: tokens)
-		{
-			System.out.println(lex(s));
+		String code = getCodeFromFile("test/rules.txt");
+		Lexer lexer = new Lexer(code);
+		
+		Token token;
+		do {
+			token = lexer.lex();
+			System.out.println(token);
 		}
+		while(token.data != "EOF");
 	}
 }
