@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 public class Lexer
 {
-	//?
 	//Contains all the type of tokens allowed by our grammar
 	public static enum TokenType 
 	{
