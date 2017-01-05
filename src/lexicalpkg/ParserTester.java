@@ -25,14 +25,11 @@ public class ParserTester
 		p = new Parser(l);
 		p.body();
 		System.out.println("fatto2");
-		l = new Lexer("\\test\\rules.txt");
-		p = new Parser(l);
-		p.body();
-		System.out.println("fatto3");
 		l = new Lexer("\\test\\wireworld.txt");
 		p = new Parser(l);
 		p.body();
-		System.out.println("fatto4");
+		System.out.println("fatto3");
+		
 		
 	}
 }

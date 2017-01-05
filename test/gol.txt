@@ -1,7 +1,6 @@
 state dead #000000
 
 state alive #ffffff
-
 evolve dead to alive when alive 2 3
 
 evolve alive to alive when alive 3 3

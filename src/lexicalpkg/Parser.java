@@ -98,7 +98,7 @@ public class Parser
 		stateRef();
 		expect(TokenType.TO);
 		stateRef();
-		if(accept(TokenType.WHEN)) expression();
+		while(accept(TokenType.WHEN)) expression();
 		if(accept(TokenType.IN)) neighbourhood();
 
 	}
@@ -121,6 +121,7 @@ public class Parser
 	
 	void body() throws InvalidTokenException, UnexpectedTokenException
 	{
+		if(currToken.type!=TokenType.STATE && currToken.type!=TokenType.STATE) throw new UnexpectedTokenException();
 		defns();
 	}
 }
