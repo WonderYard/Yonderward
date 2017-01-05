@@ -13,7 +13,6 @@ public class Lexer
 	public static enum TokenType 
 	{
 		WHITESPACE("\\s+", true),
-
 		NUMBER("-?[0-9]+"),
 		BINARYOP("(xor|and|or)\\b"),
 		EVOLVE("evolve\\b"), 
@@ -23,6 +22,7 @@ public class Lexer
 		COMMA(","),
 		EQUAL("="),
 		IN("in"),
+		NOT("not"),
 		IDENTIFIER("([a-zA-Z][0-9a-zA-Z]+)\\b"),
 		LEFTP("\\("),
 		RIGHTP("\\)"),
