@@ -40,7 +40,7 @@ public class Lexer
 		
 		private TokenType(String pattern, boolean ignore)
 		{
-			this.pattern = Pattern.compile(pattern);
+			this(pattern);
 			this.ignore = ignore;
 		}
 	}
