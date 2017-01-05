@@ -73,9 +73,10 @@ public class Lexer
 	private String text;
 	private int index;
 	
-	public Lexer(String text)
+	public Lexer(String filename) throws InvalidTokenException
 	{
-		this.text = text;
+		String code = getCodeFromFile(filename);
+		this.text = code;
 	}
 	
 	public Token lex() throws InvalidTokenException 
@@ -97,7 +98,7 @@ public class Lexer
 	    throw new InvalidTokenException();
 	}
 	
-	//This is just to make the Lexer class stand-alone, it will be deleted in the final version
+
 	private static String getCodeFromFile(String filename)
 	{
 		StringBuilder str = new StringBuilder();
@@ -112,17 +113,5 @@ public class Lexer
 		
 		return str.toString();
 	}
-	//To try this class
-	public static void main (String[] args) throws InvalidTokenException
-	{
-		String code = getCodeFromFile("test/rules.txt");
-		Lexer lexer = new Lexer(code);
-		
-		Token token;
-		do {
-			token = lexer.lex();
-			System.out.println(token);
-		}
-		while(token.type != TokenType.EOF);
-	}
+
 }

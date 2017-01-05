@@ -1,4 +1,4 @@
-state 9dead #000000
+state dead #000000
 
 state alive #ffffff
 

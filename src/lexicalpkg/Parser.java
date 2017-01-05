@@ -116,6 +116,7 @@ public class Parser
 	{
 		while(currToken.type!=TokenType.EOF)
 		{
+			System.out.println("helo");
 			if(accept(TokenType.STATE)) stateDefn();
 			if(accept(TokenType.EVOLVE)) rule();
 		}
