@@ -1,8 +1,6 @@
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +11,8 @@ public class Lexer
 	//Contains all the type of tokens allowed by our grammar
 	public static enum TokenType 
 	{
+		WHITESPACE("\\s+", true),
+
 		NUMBER("-?[0-9]+"),
 		BINARYOP("(xor|and|or)\\b"),
 		EVOLVE("evolve\\b"), 
@@ -30,24 +30,19 @@ public class Lexer
 		BOOLEAN("(true|false|guess)\\b"),
 		COORDINATE("(-?[0-9]+,-?[0-9]+)"),
 		EXANUMBER("(#[0-9a-fA-F]+)\\b");
-		  
+		
 		public final Pattern pattern;
+		private boolean ignore;
 		
 		private TokenType(String pattern) 
 		{
 			this.pattern = Pattern.compile("^" + pattern);
 		}
-	}
-	
-	public static enum IgnoreTokenType
-	{
-		WHITESPACE("\\s+");
 		
-		public final Pattern pattern;
-		
-		IgnoreTokenType(String pattern)
+		private TokenType(String pattern, boolean ignore)
 		{
 			this.pattern = Pattern.compile("^" + pattern);
+			this.ignore = ignore;
 		}
 	}
 	
@@ -83,15 +78,6 @@ public class Lexer
 	{
 	   if(index == text.length()) return new Token(TokenType.IDENTIFIER, "EOF");
 		
-	    for(IgnoreTokenType ignore : IgnoreTokenType.values())
-	    {
-	    	Matcher match = ignore.pattern.matcher(text);
-			if(match.find(index)) {
-				index = match.group().length();
-				return lex();
-			}
-	    }
-		
 		for (TokenType tokenType : TokenType.values())
 	    {
 			Matcher match = tokenType.pattern.matcher(text);
@@ -99,6 +85,7 @@ public class Lexer
 			{
 				String group = match.group();
 				index = group.length();
+				if(tokenType.ignore) return lex();
 				return new Token(tokenType, group);
 			}
 	    }
