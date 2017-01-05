@@ -1,0 +1,12 @@
+state blank #000000
+
+state wire  #aa5500
+
+state tail  #aaaaaa
+
+state head  #00a5ff
+
+evolve head to tail
+
+evolve tail to wire
+evolve wire to head when head 1 2
