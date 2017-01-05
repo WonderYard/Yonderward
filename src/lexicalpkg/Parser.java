@@ -97,28 +97,28 @@ public class Parser
 	
 	void rule() throws InvalidTokenException, UnexpectedTokenException
 	{
-		expect(TokenType.EVOLVE);
 		stateRef();
 		expect(TokenType.TO);
 		stateRef();
 		if(accept(TokenType.WHEN)) expression();
 		if(accept(TokenType.IN)) neighbourhood();
-		expect(TokenType.)
+		expect(TokenType.SEMICOLON);
 	}
 	
 	void stateDefn() throws InvalidTokenException, UnexpectedTokenException
 	{
-		expect(TokenType.STATE);
 		stateID();
 		expect(TokenType.EXANUMBER);
+		expect(TokenType.SEMICOLON);
 	}
 	
 	void defns() throws InvalidTokenException, UnexpectedTokenException
 	{
-		stateRef();
-		expect(TokenType.NUMBER);
-		if(accept(TokenType.NUMBER));
-		if(accept(TokenType.IN)) neighbourhood();
+		while(currToken.type!=TokenType.EOF)
+		{
+			if(accept(TokenType.STATE)) stateDefn();
+			if(accept(TokenType.EVOLVE)) rule();
+		}
 	}
 	
 	void body() throws InvalidTokenException, UnexpectedTokenException
