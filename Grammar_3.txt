@@ -3,7 +3,7 @@ NbhdID          = identifier.
 
 StateRef        = StateID | coordinate
 
-coordinates	= coordinate  {coordinate}.
+coordinates	    = coordinate  {coordinate}.
 
 Neighbourhood   = "[" coordinates "]".
 

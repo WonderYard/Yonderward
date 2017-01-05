@@ -113,16 +113,13 @@ public class Parser
 	
 	void defns() throws InvalidTokenException, UnexpectedTokenException
 	{
-		while(currToken.type!=TokenType.EOF)
-		{
-			if(accept(TokenType.STATE)) stateDefn();
-			if(accept(TokenType.EVOLVE)) rule();
-		}
+		if(accept(TokenType.STATE)) stateDefn();
+		if(accept(TokenType.EVOLVE)) rule();
 	}
 	
 	void body() throws InvalidTokenException, UnexpectedTokenException
 	{
-		if(currToken.type!=TokenType.STATE && currToken.type!=TokenType.STATE) throw new UnexpectedTokenException();
-		defns();
+		while(currToken.type==TokenType.STATE || currToken.type==TokenType.EVOLVE)  defns();
+		if(currToken.type!=TokenType.EOF) throw new InvalidTokenException();
 	}
 }

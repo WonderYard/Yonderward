@@ -20,7 +20,6 @@ public class ParserTester
 		}
 		*/
 		String slash=File.separator;
-				
 		Lexer l = new Lexer(slash+"test"+slash+"gol.txt");
 		Parser p = new Parser(l);
 		p.body();
