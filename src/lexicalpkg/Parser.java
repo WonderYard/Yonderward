@@ -27,6 +27,7 @@ public class Parser
 	boolean expect(TokenType t) throws InvalidTokenException, UnexpectedTokenException
 	{
 		if(accept(t)) return true;
+		System.out.println(currToken);
 		throw new UnexpectedTokenException();
 	}
 
@@ -90,9 +91,6 @@ public class Parser
 	{
 		term();
 		while(accept(TokenType.BINARYOP)) term();
-		expect(TokenType.NUMBER);
-		if(accept(TokenType.NUMBER));
-		if(accept(TokenType.IN)) neighbourhood();
 	}
 	
 	void rule() throws InvalidTokenException, UnexpectedTokenException
@@ -102,21 +100,20 @@ public class Parser
 		stateRef();
 		if(accept(TokenType.WHEN)) expression();
 		if(accept(TokenType.IN)) neighbourhood();
-		expect(TokenType.SEMICOLON);
+
 	}
 	
 	void stateDefn() throws InvalidTokenException, UnexpectedTokenException
 	{
 		stateID();
 		expect(TokenType.EXANUMBER);
-		expect(TokenType.SEMICOLON);
+
 	}
 	
 	void defns() throws InvalidTokenException, UnexpectedTokenException
 	{
 		while(currToken.type!=TokenType.EOF)
 		{
-			System.out.println("helo");
 			if(accept(TokenType.STATE)) stateDefn();
 			if(accept(TokenType.EVOLVE)) rule();
 		}
