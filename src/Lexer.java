@@ -28,7 +28,9 @@ public class Lexer
 		RIGHTPS("\\]"),
 		BOOLEAN("(true|false|guess)\\b"),
 		COORDINATE("(-?[0-9]+,-?[0-9]+)"),
-		EXANUMBER("(#[0-9a-fA-F]+)\\b");
+		EXANUMBER("(#[0-9a-fA-F]+)\\b"),
+		
+		EOF("x\\by");
 		
 		public final Pattern pattern;
 		private boolean ignore;
@@ -75,7 +77,7 @@ public class Lexer
 	
 	public Token lex() throws InvalidTokenException 
 	{
-	   if(index == text.length()) return new Token(TokenType.IDENTIFIER, "EOF");
+	   if(index == text.length()) return new Token(TokenType.EOF, "EOF");
 		
 		for (TokenType tokenType : TokenType.values())
 	    {
@@ -118,6 +120,6 @@ public class Lexer
 			token = lexer.lex();
 			System.out.println(token);
 		}
-		while(token.data != "EOF");
+		while(token.type != TokenType.EOF);
 	}
 }
