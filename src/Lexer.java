@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 public class Lexer
 {
+	//Ciao
 	//Contains all the type of tokens allowed by our grammar
 	public static enum TokenType 
 	{
@@ -71,6 +72,7 @@ public class Lexer
 	}
 	
 	private String text;
+	private int index;
 	
 	public Lexer(String text)
 	{
@@ -79,13 +81,13 @@ public class Lexer
 	
 	public Token lex() throws InvalidTokenException 
 	{
-	   if(text.length() == 0) return new Token(TokenType.IDENTIFIER, "EOF");
+	   if(index == text.length()) return new Token(TokenType.IDENTIFIER, "EOF");
 		
 	    for(IgnoreTokenType ignore : IgnoreTokenType.values())
 	    {
 	    	Matcher match = ignore.pattern.matcher(text);
-			if(match.find()) {
-				text = text.substring(match.end(), text.length());
+			if(match.find(index)) {
+				index = match.group().length();
 				return lex();
 			}
 	    }
@@ -93,10 +95,11 @@ public class Lexer
 		for (TokenType tokenType : TokenType.values())
 	    {
 			Matcher match = tokenType.pattern.matcher(text);
-			if(match.find())
+			if(match.find(index))
 			{
-				text = text.substring(match.end(), text.length());
-				return new Token(tokenType, match.group());
+				String group = match.group();
+				index = group.length();
+				return new Token(tokenType, group);
 			}
 	    }
 	    throw new InvalidTokenException();
