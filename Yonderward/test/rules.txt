@@ -1,7 +1,0 @@
-state
-stat,STATE
-astate
-astat
-statea     
-statexor
-staate
