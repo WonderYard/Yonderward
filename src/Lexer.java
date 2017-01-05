@@ -36,12 +36,12 @@ public class Lexer
 		
 		private TokenType(String pattern) 
 		{
-			this.pattern = Pattern.compile("^" + pattern);
+			this.pattern = Pattern.compile(pattern);
 		}
 		
 		private TokenType(String pattern, boolean ignore)
 		{
-			this.pattern = Pattern.compile("^" + pattern);
+			this.pattern = Pattern.compile(pattern);
 			this.ignore = ignore;
 		}
 	}
@@ -81,10 +81,11 @@ public class Lexer
 		for (TokenType tokenType : TokenType.values())
 	    {
 			Matcher match = tokenType.pattern.matcher(text);
-			if(match.find(index))
+			match.region(index, text.length());
+			if(match.lookingAt())
 			{
 				String group = match.group();
-				index = group.length();
+				index += group.length();
 				if(tokenType.ignore) return lex();
 				return new Token(tokenType, group);
 			}
