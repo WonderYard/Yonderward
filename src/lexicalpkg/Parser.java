@@ -5,6 +5,7 @@ import lexicalpkg.Lexer.TokenType;
 
 public class Parser 
 {
+	//token returned by the lexer
 	Token currToken;
 	Lexer l;
 	
