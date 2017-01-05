@@ -1,0 +1,47 @@
+﻿StateID         = identifier.
+NbhdID          = identifier.
+
+StateRef        = StateID | coordinate
+
+coordinates	= coordinate  {coordinate}.
+
+Neighbourhood   = "[" coordinates "]".
+
+AdjacencyPred   = StateRef natural-number [natural-number] ["in" Neigbourhood] .
+
+
+Term            = "(" Expression ")"
+                | "not" Term
+                | "AdjacencyPred
+
+Expression      = Term { binaryop Term}.
+
+Rule            = "evolve" StareRef "to" StateRef ["when" Expression].
+
+StateDefn       = "state" StateID exanumber.
+
+Defns           = {StateDefn}{Rule}.
+
+Body	        = Defns .
+
+
+
+
+                
+
+
+
+
+
+
+The following are token definitions, not productions.
+exanumber=	= ("(#[0-9a-fA-F]+)\\b").
+binaryop =      = ("and" | "or" | "xor")
+BoolPrimitive   = "true" | "false" | "guess".
+coordinate	= "(" ["-"] digit ","  ["-"] digit ")".
+quoted-char     = quote printable-non-quote quote.
+identifier      = alpha {alpha | digit}.
+natural-number  = digit {digit}.
+quote           = ["].
+alpha           = [a-zA-Z].
+digit           = [0-9].

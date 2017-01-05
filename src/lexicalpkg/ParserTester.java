@@ -5,7 +5,7 @@ import lexicalpkg.Lexer.TokenType;
 
 public class ParserTester 
 {
-	
+
 	public static void main (String[] args) throws InvalidTokenException, UnexpectedTokenException
 	{
 		/*

@@ -1,7 +1,3 @@
-state
-stat,STATE
-astate
-astat
-statea     
-statexor
-staate
+ statexor ciao #fafafa
+ 
+ qw
