@@ -20,6 +20,7 @@ public class Lexer
 		TO("to\\b"),
 		WHEN("when\\b"),
 		COMMA(","),
+		SEMICOLON(";"),
 		EQUAL("="),
 		IN("in"),
 		NOT("not"),

@@ -86,11 +86,43 @@ public class Parser
 		else if(accept(TokenType.NOT)) term();
 		adjacencyPred();
 	}
-	void adjacencyPred() throws InvalidTokenException, UnexpectedTokenException
+	void expression() throws InvalidTokenException, UnexpectedTokenException
+	{
+		term();
+		while(accept(TokenType.BINARYOP)) term();
+		expect(TokenType.NUMBER);
+		if(accept(TokenType.NUMBER));
+		if(accept(TokenType.IN)) neighbourhood();
+	}
+	
+	void rule() throws InvalidTokenException, UnexpectedTokenException
+	{
+		expect(TokenType.EVOLVE);
+		stateRef();
+		expect(TokenType.TO);
+		stateRef();
+		if(accept(TokenType.WHEN)) expression();
+		if(accept(TokenType.IN)) neighbourhood();
+		expect(TokenType.)
+	}
+	
+	void stateDefn() throws InvalidTokenException, UnexpectedTokenException
+	{
+		expect(TokenType.STATE);
+		stateID();
+		expect(TokenType.EXANUMBER);
+	}
+	
+	void defns() throws InvalidTokenException, UnexpectedTokenException
 	{
 		stateRef();
 		expect(TokenType.NUMBER);
 		if(accept(TokenType.NUMBER));
 		if(accept(TokenType.IN)) neighbourhood();
+	}
+	
+	void body() throws InvalidTokenException, UnexpectedTokenException
+	{
+		defns();
 	}
 }
