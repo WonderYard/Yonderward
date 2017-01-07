@@ -5,4 +5,4 @@ evolve dead to alive when alive 2 3
 
 evolve alive to alive when alive 3 3
 
-evolve alive to dead  state
+evolve alive to dead 

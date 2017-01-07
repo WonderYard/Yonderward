@@ -6,6 +6,7 @@ import lexicalpkg.Lexer.Token;
 
 public class AST
 {
+	//token
 	private Token token;
 	private List<AST> children;
 	
