@@ -60,7 +60,7 @@ public class AppJavaFX extends Application
 		slider.setShowTickMarks(true);
 		slider.setShowTickLabels(true);
 		
-		TextArea textArea = new TextArea(getCodeFromFile(slash+"test"+slash+"neon.txt"));
+		TextArea textArea = new TextArea(getCodeFromFile(slash+"test"+slash+"rules.txt"));
 		textArea.setMinHeight(2 * HEIGHT / 3);
 		textArea.setMinWidth(WIDTH / 3);
 		
@@ -69,7 +69,7 @@ public class AppJavaFX extends Application
 			newWorld(Integer.parseInt(txfSize.getText()));
 			
 			try {
-				Lexer l = new Lexer(getCodeFromFile(slash+"test"+slash+"neon.txt"));
+				Lexer l = new Lexer(getCodeFromFile(slash+"test"+slash+"rules.txt"));
 				Parser p = new Parser(l);
 				loadRules(p.body());
 			} catch (Exception e) {

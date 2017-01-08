@@ -24,12 +24,12 @@ public class Lexer
 		IN("in\\b"),
 		NOT("not\\b"),
 		IDENTIFIER("([a-zA-Z][0-9a-zA-Z]+)\\b"),
+		COORDINATE("\\(-?[0-9]+,-?[0-9]+\\)"),
 		LEFTP("\\("),
 		RIGHTP("\\)"),
 		LEFTPS("\\["),
 		RIGHTPS("\\]"),
 		BOOLEAN("(true|false|guess)\\b"),
-		COORDINATE("(-?[0-9]+,-?[0-9]+)"),
 		EXANUMBER("(#[0-9a-fA-F]+)\\b"),
 		
 		EOF("x\\by");

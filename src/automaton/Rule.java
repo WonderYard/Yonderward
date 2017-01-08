@@ -13,9 +13,9 @@ public class Rule
 		this.conditions = conditions;
 	}
 	
-	public StateRef apply(Map<Integer, Integer> neighbors) {
+	public StateRef apply(Map<Integer, Integer> neighbors, World world, Point self) {
 		for(int i = 0; i < conditions.size(); i++) {
-			if(!conditions.get(i).check(neighbors)) return null;
+			if(!conditions.get(i).check(neighbors, world, self)) return null;
 		}
 		return evolveTo;
 	}

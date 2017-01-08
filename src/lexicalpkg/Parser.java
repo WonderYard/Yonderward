@@ -42,7 +42,7 @@ public class Parser
 	boolean expect(TokenType t) throws InvalidTokenException, UnexpectedTokenException
 	{
 		if(accept(t)) return true;
-		throw new UnexpectedTokenException();
+		throw new UnexpectedTokenException(String.format("%s expected but %s found", t, currToken));
 	}
 
 	Token stateID() throws InvalidTokenException, UnexpectedTokenException
@@ -87,10 +87,14 @@ public class Parser
 		Token u = currToken;
 		int max = min;
 		if(accept(TokenType.NUMBER)) max = Integer.parseInt(u.data);
-
-		if(accept(TokenType.IN)) neighbourhood();
 		
-		return new Condition(cell, min, max);
+		if(accept(TokenType.IN)) {
+			Token p = currToken;
+			neighbourhood();
+			return new Condition(cell, min, max, new StateRef[]{new StateRef(p, names)});
+		}
+		
+		return new Condition(cell, min, max, new StateRef[]{});
 	}
 	
 	//Not in our grammar atm

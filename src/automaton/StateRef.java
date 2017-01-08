@@ -44,6 +44,11 @@ public class StateRef
 		this.refType = RefType.ID;
 	}
 
+	public StateRef(Point point) {
+		this.point = point;
+		this.refType = RefType.REL_POINT;
+	}
+
 	public int getID(World world) {
 		if(this.refType == RefType.ID) return stateID;
 		return world.getCell(point);
@@ -52,5 +57,10 @@ public class StateRef
 	public int getID() {
 		if(this.refType == RefType.ID) return stateID;
 		return -1;
+	}
+	
+	public Point getPoint()
+	{
+		return point;
 	}
 }

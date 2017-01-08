@@ -92,7 +92,7 @@ public class World
 				newGrid[y][x] = cell;
 				
 				for(int i = 0; i < rules.size(); i++) {
-					StateRef newCell = rules.get(i).apply(neighbors);
+					StateRef newCell = rules.get(i).apply(neighbors, this, new Point(x, y));
 					if(!(newCell == null)) {
 						newGrid[y][x] = newCell.getID(this);
 						break;
@@ -104,7 +104,6 @@ public class World
 	}
 
 	public int getCell(Point point) {
-		System.out.println(point.x + ", " + point.y);
 		return grid[point.y][point.x];
 	}
 }
