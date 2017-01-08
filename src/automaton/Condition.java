@@ -1,5 +1,5 @@
 package automaton;
-
+// ola
 import java.util.Map;
 
 public class Condition
