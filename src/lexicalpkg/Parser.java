@@ -1,5 +1,15 @@
 package lexicalpkg;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import automaton.Condition;
+import automaton.Point;
+import automaton.Rule;
+import automaton.State;
+import automaton.StateRef;
+import automaton.World;
+import automaton.World.Neighborhood;
 import lexicalpkg.Lexer.Token;
 import lexicalpkg.Lexer.TokenType;
 
@@ -8,6 +18,10 @@ public class Parser
 	//token returned by the lexer
 	Token currToken;
 	Lexer l;
+	
+	List<State> states = new ArrayList<>();
+	List<String> names = new ArrayList<>();
+	
 	
 	public Parser (Lexer l) throws InvalidTokenException
 	{
@@ -28,24 +42,26 @@ public class Parser
 	boolean expect(TokenType t) throws InvalidTokenException, UnexpectedTokenException
 	{
 		if(accept(t)) return true;
-		System.out.println(currToken);
 		throw new UnexpectedTokenException();
 	}
 
-	void stateID() throws InvalidTokenException, UnexpectedTokenException
+	Token stateID() throws InvalidTokenException, UnexpectedTokenException
 	{
+		Token t = currToken;
 		expect(TokenType.IDENTIFIER);
+		return t;
 	}
 	void nbhdID() throws InvalidTokenException, UnexpectedTokenException
 	{
 		expect(TokenType.IDENTIFIER);
 	}
 	
-	void stateRef() throws InvalidTokenException, UnexpectedTokenException
+	Token stateRef() throws InvalidTokenException, UnexpectedTokenException
 	{
+		Token t = currToken;
 		if(accept(TokenType.COORDINATE));
 		else expect(TokenType.IDENTIFIER);
-		
+		return t;
 	}
 	
 	void coordinates() throws InvalidTokenException, UnexpectedTokenException
@@ -62,12 +78,19 @@ public class Parser
 		
 	}
 	
-	void adjacencyPred() throws InvalidTokenException, UnexpectedTokenException
+	Condition adjacencyPred() throws InvalidTokenException, UnexpectedTokenException, UndeclaredStateException
 	{
-		stateRef();
+		StateRef cell = new StateRef(stateRef(), names);
+		Token t =  currToken;
 		expect(TokenType.NUMBER);
-		if(accept(TokenType.NUMBER));
+		int min = Integer.parseInt(t.data);
+		Token u = currToken;
+		int max = min;
+		if(accept(TokenType.NUMBER)) max = Integer.parseInt(u.data);
+
 		if(accept(TokenType.IN)) neighbourhood();
+		
+		return new Condition(cell, min, max);
 	}
 	
 	//Not in our grammar atm
@@ -78,7 +101,7 @@ public class Parser
 		stateRef();
 	}
 	
-	void term() throws InvalidTokenException, UnexpectedTokenException
+	Condition term() throws InvalidTokenException, UnexpectedTokenException, UndeclaredStateException
 	{
 		if(accept(TokenType.LEFTP))
 		{
@@ -86,40 +109,55 @@ public class Parser
 			expect(TokenType.RIGHTP);
 		}
 		else if(accept(TokenType.NOT)) term();
-		adjacencyPred();
+		return adjacencyPred();
 	}
-	void expression() throws InvalidTokenException, UnexpectedTokenException
+	Condition expression() throws InvalidTokenException, UnexpectedTokenException, UndeclaredStateException
 	{
-		term();
-		while(accept(TokenType.BINARYOP)) term();
+		return term();
+		// while(accept(TokenType.BINARYOP)) term();
 	}
 	
-	void rule() throws InvalidTokenException, UnexpectedTokenException
+	void rule() throws InvalidTokenException, UnexpectedTokenException, UndeclaredStateException
 	{
-		stateRef();
+		String data = stateID().data;
+		int stateIndex = names.indexOf(data);
+		if(stateIndex == -1) throw new UndeclaredStateException(data);
 		expect(TokenType.TO);
-		stateRef();
-		while(accept(TokenType.WHEN)) expression();
-		if(accept(TokenType.IN)) neighbourhood();
+		StateRef evolveTo = new StateRef(stateRef(), names);
+		List<Condition> conditions = new ArrayList<Condition>();
+		
+		while(accept(TokenType.WHEN)) conditions.add(expression());
+		// if(accept(TokenType.IN)) neighbourhood();
+		states.get(stateIndex).addRule(evolveTo, conditions);
 
 	}
 	
 	void stateDefn() throws InvalidTokenException, UnexpectedTokenException
 	{
-		stateID();
+		Token name = stateID();
+		names.add(name.data);
+		Token color = currToken;
 		expect(TokenType.EXANUMBER);
+
+		states.add(new State(color.data));
 
 	}
 	
-	void defns() throws InvalidTokenException, UnexpectedTokenException
+	void defn() throws InvalidTokenException, UnexpectedTokenException, UndeclaredStateException
 	{
 		if(accept(TokenType.STATE)) stateDefn();
 		if(accept(TokenType.EVOLVE)) rule();
 	}
 	
-	void body() throws InvalidTokenException, UnexpectedTokenException
+	public List<State> body() throws InvalidTokenException, UnexpectedTokenException, UndeclaredStateException
 	{
-		while(currToken.type==TokenType.STATE || currToken.type==TokenType.EVOLVE)  defns();
-		if(currToken.type!=TokenType.EOF) throw new InvalidTokenException();
+		while(currToken.type==TokenType.STATE || currToken.type==TokenType.EVOLVE)
+		{
+			defn();
+			// expect(TokenType.SEMICOLON);
+		}
+		if(currToken.type != TokenType.EOF) throw new InvalidTokenException();
+		
+		return states;
 	}
 }

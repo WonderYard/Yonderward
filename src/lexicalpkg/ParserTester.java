@@ -8,7 +8,7 @@ import lexicalpkg.Lexer.TokenType;
 public class ParserTester 
 {
 
-	public static void main (String[] args) throws InvalidTokenException, UnexpectedTokenException
+	public static void main (String[] args) throws InvalidTokenException, UnexpectedTokenException, UndeclaredStateException
 	{
 		/*
 		Lexer l = new Lexer("\\test\\neon.txt");
@@ -20,7 +20,7 @@ public class ParserTester
 		}
 		*/
 		String slash=File.separator;
-		Lexer l = new Lexer(slash+"test"+slash+"gol.txt");
+		Lexer l = new Lexer(slash+"test"+slash+"rules.txt");
 		Parser p = new Parser(l);
 		p.body();
 		System.out.println("fatto1");

@@ -5,17 +5,23 @@ import java.util.Map;
 
 public class Rule
 {
-	private int evolveTo;
+	private StateRef evolveTo;
 	private List<Condition> conditions;
 
-	public Rule() {
-		
+	public Rule(StateRef evolveTo, List<Condition> conditions) {
+		this.evolveTo = evolveTo;
+		this.conditions = conditions;
 	}
 	
-	public int apply(Map<Integer, Integer> neighbors) {
+	public StateRef apply(Map<Integer, Integer> neighbors) {
 		for(int i = 0; i < conditions.size(); i++) {
-			if(!conditions.get(i).check(neighbors)) return -1;
+			if(!conditions.get(i).check(neighbors)) return null;
 		}
 		return evolveTo;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("Rule(evolveTo=%s, conditions=%s", evolveTo.getID(), conditions);
 	}
 }

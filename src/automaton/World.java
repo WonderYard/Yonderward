@@ -6,6 +6,33 @@ import java.util.Map;
 
 public class World
 {
+	public enum Neighborhood
+	{
+		MOORE(new Point[]{
+			new Point(-1, -1),
+			new Point(-1,  0),
+			new Point(-1,  1),
+			new Point( 0, -1),
+			new Point( 0,  1),
+			new Point( 1, -1),
+			new Point( 1,  0),
+			new Point( 1,  1)
+		}),
+		VON_NEUMANN(new Point[]{
+			new Point(-1,  0),
+			new Point( 0, -1),
+			new Point( 0,  1),
+			new Point( 1,  0)
+		});
+		
+		public Point[] points;
+		
+		private Neighborhood(Point[] neighborhood)
+		{
+			this.points = neighborhood;
+		}
+	}
+	
 	private int cols, rows;
 	private int[][] grid;
 	private List<State> states;
@@ -17,6 +44,11 @@ public class World
 		grid = new int[cols][rows];
 		this.states = states;
 		this.neighborhood = neighborhood;
+	}
+	
+	public Point getSize()
+	{
+		return new Point(cols, rows);
 	}
 	
 	public int getCell(int x, int y) {
@@ -38,7 +70,7 @@ public class World
 			int nx = this.neighborhood[i].x + x;
 			int ny = this.neighborhood[i].y + y;
 			if(validateNeighbor(nx, ny)) {
-				int cell = this.getCell(nx, ny);
+				int cell = new StateRef(this.getCell(nx, ny)).getID(this);
 				neighbors.put(cell, neighbors.getOrDefault(cell, 0) + 1);
 			}
 		}
@@ -56,18 +88,23 @@ public class World
 			for(int x = 0; x < cols; x++) {
 				int cell = getCell(x, y);
 				Map<Integer, Integer> neighbors = getNeighbors(x, y);
-				List<Rule> rules = states.get(cell).rules;
+				List<Rule> rules = states.get(cell).getRules();
 				newGrid[y][x] = cell;
 				
 				for(int i = 0; i < rules.size(); i++) {
-					int newCell = rules.get(i).apply(neighbors);
-					if(!(newCell == -1)) {
-						newGrid[y][x] = newCell;
+					StateRef newCell = rules.get(i).apply(neighbors);
+					if(!(newCell == null)) {
+						newGrid[y][x] = newCell.getID(this);
 						break;
 					}
 				}
 			}
 		}
 		grid = newGrid;
+	}
+
+	public int getCell(Point point) {
+		System.out.println(point.x + ", " + point.y);
+		return grid[point.y][point.x];
 	}
 }

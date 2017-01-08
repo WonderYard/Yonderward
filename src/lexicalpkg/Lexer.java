@@ -59,6 +59,7 @@ public class Lexer
 		{
 			this.type = type;
 			this.data = data;
+			//System.out.println(this);
 		}
 		
 		//Utility for printing
@@ -72,9 +73,9 @@ public class Lexer
 	private String text;
 	private int index;
 	
-	public Lexer(String filename) throws InvalidTokenException
+	public Lexer(String code) throws InvalidTokenException
 	{
-		String code = getCodeFromFile(filename);
+		// String code = getCodeFromFile(filename);
 		this.text = code;
 	}
 	
