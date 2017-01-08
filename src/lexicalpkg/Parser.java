@@ -1,5 +1,7 @@
 package lexicalpkg;
 
+import java.util.ArrayList;
+
 import lexicalpkg.Lexer.Token;
 import lexicalpkg.Lexer.TokenType;
 
@@ -8,6 +10,8 @@ public class Parser
 	//token returned by the lexer
 	Token currToken;
 	Lexer l;
+	ArrayList<ArrayList<Token>> branches = new ArrayList<>();
+	ArrayList<Token> currBranch;
 	
 	public Parser (Lexer l) throws InvalidTokenException
 	{
@@ -19,6 +23,7 @@ public class Parser
 	{
 		if(currToken.type==t)
 		{
+			currBranch.add(currToken);
 			currToken=l.lex();
 			return true;
 		}
@@ -28,7 +33,6 @@ public class Parser
 	boolean expect(TokenType t) throws InvalidTokenException, UnexpectedTokenException
 	{
 		if(accept(t)) return true;
-		System.out.println(currToken);
 		throw new UnexpectedTokenException();
 	}
 
@@ -113,13 +117,28 @@ public class Parser
 	
 	void defns() throws InvalidTokenException, UnexpectedTokenException
 	{
-		if(accept(TokenType.STATE)) stateDefn();
-		if(accept(TokenType.EVOLVE)) rule();
+		currBranch= new ArrayList<>();
+		
+		if(accept(TokenType.STATE))
+		{
+			stateDefn();
+			branches.add(currBranch);
+		}
+		
+		currBranch= new ArrayList<>();
+		
+		if(accept(TokenType.EVOLVE))
+		{
+			rule();
+			branches.add(currBranch);
+		}
 	}
 	
-	void body() throws InvalidTokenException, UnexpectedTokenException
+	ArrayList<ArrayList<Token>> body() throws InvalidTokenException, UnexpectedTokenException
 	{
-		while(currToken.type==TokenType.STATE || currToken.type==TokenType.EVOLVE)  defns();
+		
+		while(currToken.type==TokenType.STATE || currToken.type==TokenType.EVOLVE) defns();
 		if(currToken.type!=TokenType.EOF) throw new InvalidTokenException();
+		return branches;
 	}
 }

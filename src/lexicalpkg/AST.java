@@ -1,19 +1,21 @@
 package lexicalpkg;
 
-import java.util.List;
-
 import lexicalpkg.Lexer.Token;
 
 public class AST
 {
 	//token
-	private Token token;
-	private List<AST> children;
+	protected Token token;
+	protected AST children;
 	
-	public AST(Token token, List<AST> children)
+	public AST(Token token)
 	{
 		this.token = token;
-		this.children = children;
+	}
+	
+	public void addChild(Token t)
+	{
+		children=new AST(t);
 	}
 	
 	@Override
