@@ -3,7 +3,8 @@ package lexicalpkg;
 import java.io.File;
 
 import lexicalpkg.Lexer.Token;
-import lexicalpkg.Lexer.TokenType;
+import lexicalpkg.TokenType.BasicTokenType;
+
 import java.util.ArrayList;
 
 public class ParserTester 
@@ -19,17 +20,17 @@ public class ParserTester
 
 	public static void main (String[] args) throws InvalidTokenException, UnexpectedTokenException
 	{
-		/*
+		/**
 		Lexer l = new Lexer("\\test\\neon.txt");
 		Token t=l.lex();
-		while(t.type!=TokenType.EOF)
+		while(t.type!=BasicTokenType.EOF)
 		{
 			System.out.println(t);
 			t=l.lex();
 		}
 		*/
-		String slash=File.separator;
 		
+		String slash=File.separator;
 		
 		
 		Lexer l = new Lexer(slash+"test"+slash+"gol.txt");

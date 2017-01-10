@@ -3,7 +3,8 @@ package lexicalpkg;
 import java.util.ArrayList;
 
 import lexicalpkg.Lexer.Token;
-import lexicalpkg.Lexer.TokenType;
+import lexicalpkg.TokenType.BasicTokenType;
+
 
 public class Parser 
 {
@@ -19,7 +20,7 @@ public class Parser
 		currToken=l.lex();
 	}
 	
-	boolean accept(TokenType t) throws InvalidTokenException
+	boolean accept(BasicTokenType t) throws InvalidTokenException
 	{
 		if(currToken.type==t)
 		{
@@ -30,7 +31,7 @@ public class Parser
 		return false;
 	}
 	
-	boolean expect(TokenType t) throws InvalidTokenException, UnexpectedTokenException
+	boolean expect(BasicTokenType t) throws InvalidTokenException, UnexpectedTokenException
 	{
 		if(accept(t)) return true;
 		throw new UnexpectedTokenException();
@@ -38,80 +39,80 @@ public class Parser
 
 	void stateID() throws InvalidTokenException, UnexpectedTokenException
 	{
-		expect(TokenType.IDENTIFIER);
+		expect(BasicTokenType.IDENTIFIER);
 	}
 	void nbhdID() throws InvalidTokenException, UnexpectedTokenException
 	{
-		expect(TokenType.IDENTIFIER);
+		expect(BasicTokenType.IDENTIFIER);
 	}
 	
 	void stateRef() throws InvalidTokenException, UnexpectedTokenException
 	{
-		if(accept(TokenType.COORDINATE));
-		else expect(TokenType.IDENTIFIER);
+		if(accept(BasicTokenType.COORDINATE));
+		else expect(BasicTokenType.IDENTIFIER);
 		
 	}
 	
 	void coordinates() throws InvalidTokenException, UnexpectedTokenException
 	{
-		expect(TokenType.COORDINATE);
-		while (accept(TokenType.COORDINATE));
+		expect(BasicTokenType.COORDINATE);
+		while (accept(BasicTokenType.COORDINATE));
 		
 	}
 	
 	void neighbourhood() throws InvalidTokenException, UnexpectedTokenException
 	{
-		if(accept(TokenType.COORDINATE));
-		else expect(TokenType.IDENTIFIER);
+		if(accept(BasicTokenType.COORDINATE));
+		else expect(BasicTokenType.IDENTIFIER);
 		
 	}
 	
 	void adjacencyPred() throws InvalidTokenException, UnexpectedTokenException
 	{
 		stateRef();
-		expect(TokenType.NUMBER);
-		if(accept(TokenType.NUMBER));
-		if(accept(TokenType.IN)) neighbourhood();
+		expect(BasicTokenType.NUMBER);
+		if(accept(BasicTokenType.NUMBER));
+		if(accept(BasicTokenType.IN)) neighbourhood();
 	}
 	
 	//Not in our grammar atm
 	void relationalPred() throws InvalidTokenException, UnexpectedTokenException
 	{
 		stateRef();
-		expect(TokenType.EQUAL);
+		expect(BasicTokenType.EQUAL);
 		stateRef();
 	}
 	
 	void term() throws InvalidTokenException, UnexpectedTokenException
 	{
-		if(accept(TokenType.LEFTP))
+		if(accept(BasicTokenType.LEFTP))
 		{
 			expression();
-			expect(TokenType.RIGHTP);
+			expect(BasicTokenType.RIGHTP);
 		}
-		else if(accept(TokenType.NOT)) term();
+		else if(accept(BasicTokenType.NOT)) term();
 		adjacencyPred();
 	}
 	void expression() throws InvalidTokenException, UnexpectedTokenException
 	{
 		term();
-		while(accept(TokenType.BINARYOP)) term();
+		while(accept(BasicTokenType.BINARYOP)) term();
 	}
 	
 	void rule() throws InvalidTokenException, UnexpectedTokenException
 	{
 		stateRef();
-		expect(TokenType.TO);
+		expect(BasicTokenType.TO);
 		stateRef();
-		while(accept(TokenType.WHEN)) expression();
-		if(accept(TokenType.IN)) neighbourhood();
+		while(accept(BasicTokenType.WHEN)) expression();
+		if(accept(BasicTokenType.IN)) neighbourhood();
 
 	}
 	
 	void stateDefn() throws InvalidTokenException, UnexpectedTokenException
 	{
 		stateID();
-		expect(TokenType.EXANUMBER);
+		expect(BasicTokenType.EXANUMBER);
 
 	}
 	
@@ -119,7 +120,7 @@ public class Parser
 	{
 		currBranch= new ArrayList<>();
 		
-		if(accept(TokenType.STATE))
+		if(accept(BasicTokenType.STATE))
 		{
 			stateDefn();
 			branches.add(currBranch);
@@ -127,7 +128,7 @@ public class Parser
 		
 		currBranch= new ArrayList<>();
 		
-		if(accept(TokenType.EVOLVE))
+		if(accept(BasicTokenType.EVOLVE))
 		{
 			rule();
 			branches.add(currBranch);
@@ -137,8 +138,8 @@ public class Parser
 	ArrayList<ArrayList<Token>> body() throws InvalidTokenException, UnexpectedTokenException
 	{
 		
-		while(currToken.type==TokenType.STATE || currToken.type==TokenType.EVOLVE) defns();
-		if(currToken.type!=TokenType.EOF) throw new InvalidTokenException();
+		while(currToken.type==BasicTokenType.STATE || currToken.type==BasicTokenType.EVOLVE) defns();
+		if(currToken.type!=BasicTokenType.EOF) throw new InvalidTokenException();
 		return branches;
 	}
 }

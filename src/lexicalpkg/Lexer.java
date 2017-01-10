@@ -6,48 +6,12 @@ import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import lexicalpkg.TokenType.BasicTokenType;
+
 public class Lexer
 {
 	//Contains all the type of tokens allowed by our grammar
-	public static enum TokenType 
-	{
-		WHITESPACE("\\s+", true),
-		NUMBER("-?[0-9]+"),
-		BINARYOP("(xor|and|or)\\b"),
-		EVOLVE("evolve\\b"), 
-		STATE("state\\b"),
-		TO("to\\b"),
-		WHEN("when\\b"),
-		COMMA(","),
-		SEMICOLON(";"),
-		EQUAL("="),
-		IN("in\\b"),
-		NOT("not\\b"),
-		IDENTIFIER("([a-zA-Z][0-9a-zA-Z]+)\\b"),
-		LEFTP("\\("),
-		RIGHTP("\\)"),
-		LEFTPS("\\["),
-		RIGHTPS("\\]"),
-		BOOLEAN("(true|false|guess)\\b"),
-		COORDINATE("(-?[0-9]+,-?[0-9]+)"),
-		EXANUMBER("(#[0-9a-fA-F]+)\\b"),
-		
-		EOF("x\\by");
-		
-		public final Pattern pattern;
-		private boolean ignore;
-		
-		private TokenType(String pattern) 
-		{
-			this.pattern = Pattern.compile(pattern);
-		}
-		
-		private TokenType(String pattern, boolean ignore)
-		{
-			this(pattern);
-			this.ignore = ignore;
-		}
-	}
+	
 	
 	//Allows to create Tokens with associated data
 	public static class Token 
@@ -65,7 +29,7 @@ public class Lexer
 		@Override
 		public String toString() 
 		{
-			return String.format("(%s %s)", type.name(), data);
+			return String.format("(%s %s)", type.getName(), data);
 		}
 	}
 	
@@ -80,17 +44,17 @@ public class Lexer
 	
 	public Token lex() throws InvalidTokenException 
 	{
-	   if(index == text.length()) return new Token(TokenType.EOF, "EOF");
+	   if(index == text.length()) return new Token(BasicTokenType.EOF, "EOF");
 		
-		for (TokenType tokenType : TokenType.values())
+		for (TokenType tokenType : BasicTokenType.values())
 	    {
-			Matcher match = tokenType.pattern.matcher(text);
+			Matcher match = tokenType.getPattern().matcher(text);
 			match.region(index, text.length());
 			if(match.lookingAt())
 			{
 				String group = match.group();
 				index += group.length();
-				if(tokenType.ignore) return lex();
+				if(tokenType.isIgnored()) return lex();
 				return new Token(tokenType, group);
 			}
 	    }
