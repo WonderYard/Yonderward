@@ -1,5 +1,5 @@
 Abbiamo pensato alle classi come un modo per scrivere le regole una sola volta e assegnarle agli stati che devono avere quel comportamento. Abbiamo pensato di sostituirle con il concetto (quasi equivalente) di regola isolata dallo stato per permetterne il riutilizzo. Ma non abbiamo considerato il seguente fatto: una classe può essere vuota, cioè senza regole, ed è utilissima per evitare di scrivere più regole quando devo controllare più stati nel vicinato ma devo applicare in ogni caso sempre la stessa regola (e questo secondo me è una cosa che accade spesso: se più stati mi influenzano allo stesso modo, allora probabilmente si comportano in modo simile tra di loro, rafforzando quindi il concetto di appartenenza a una classe).
-Quindi riassumendo una classe serve per raggruppare regole, sia TRA stati con comportamenti simili, sia PER stati che hanno influenze.
+Quindi riassumendo una classe serve per raggruppare regole, sia TRA stati con comportamenti simili, sia PER stati che hanno influenze simili.
 
 
 Esempio senza classi e con evolve separato da state. Risultato: completamente fuori controllo.
