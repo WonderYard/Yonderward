@@ -1,38 +1,33 @@
 package lexicalpkg;
 
 import java.io.File;
-
-import lexicalpkg.Lexer.Token;
-import lexicalpkg.Lexer.TokenType;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ParserTester 
 {
-
 	public static void main (String[] args) throws InvalidTokenException, UnexpectedTokenException, UndeclaredStateException
 	{
-		/*
-		Lexer l = new Lexer("\\test\\neon.txt");
-		Token t=l.lex();
-		while(t.type!=TokenType.EOF)
-		{
-			System.out.println(t);
-			t=l.lex();
-		}
-		*/
 		String slash=File.separator;
-		Lexer l = new Lexer(slash+"test"+slash+"rules.txt");
-		Parser p = new Parser(l);
-		p.body();
-		System.out.println("fatto1");
-		l = new Lexer(slash+"test"+slash+"neon.txt");
-		p = new Parser(l);
-		p.body();
-		System.out.println("fatto2");
-		l = new Lexer(slash+"test"+slash+"wireworld.txt");
-		p = new Parser(l);
-		p.body();
-		System.out.println("fatto3");
+		AnotherParser parser = new AnotherParser();
+		String code = getCodeFromFile(slash+"test"+slash+"gol.txt");
+		AST ast = parser.parse(code);
+		System.out.println(ast);
+	}
+	
+	public static String getCodeFromFile(String filename)
+	{
+		StringBuilder str = new StringBuilder();
+		try {
+			Files.newBufferedReader(Paths.get(new File(".").getCanonicalPath() + "/"+filename)).lines().forEach(l -> {
+				str.append(l);
+				str.append("\n");
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		
+		return str.toString();
 	}
 }
