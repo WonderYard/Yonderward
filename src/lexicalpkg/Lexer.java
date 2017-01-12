@@ -106,6 +106,10 @@ public class Lexer
 						lineNumberBuffer++;
 						colNumberBuffer = 1;
 					}
+					else if(tokenType.equals(TokenType.COMMENT_MULTI))
+					{
+						lineNumberBuffer += group.split("\n").length - 1;
+					}
 					return nextToken();
 				}
 				return currToken = new Token(tokenType, group);
