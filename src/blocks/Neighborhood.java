@@ -37,9 +37,12 @@ public class Neighborhood extends NbhdDecl
 				}
 			}
 			else if(ref instanceof ClassRef) {
-				ClassRef classRef = (ClassRef) ref;
-				if(classRef.getID(world, me) == stateID) {
-					count++;
+				for(ClassRef classRef : ((StateDefn) world.stateDefns.get(stateID)).classRefs)
+				{
+					if(classRef.value.data.equals(((ClassRef) ref).value.data)) {
+						count++;
+						break;
+					}
 				}
 			}
 			else throw new RuntimeException();
