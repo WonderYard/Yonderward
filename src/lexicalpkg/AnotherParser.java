@@ -1,8 +1,5 @@
 package lexicalpkg;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import blocks.*;
 import lexicalpkg.Lexer.Token;
 import lexicalpkg.Lexer.TokenType;
@@ -207,7 +204,7 @@ public class AnotherParser
 			Token not = lexer.expect(TokenType.NOT);
 			term();
 			Term term = new Term(not);
-			term.addChild(root);
+			term.setExpression(root);
 			root = term;
 		}
 		else if(lexer.on(TokenType.BOOL_CONST))

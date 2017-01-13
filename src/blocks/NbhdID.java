@@ -14,4 +14,9 @@ public class NbhdID extends NbhdDecl
 	{
 		return String.format("{\"NbhdID\": {\"nbhdID\": %s}}", value);
 	}
+	
+	public int count(Ref ref)
+	{
+		return 0;
+	}
 }

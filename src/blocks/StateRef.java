@@ -19,7 +19,7 @@ public class StateRef extends Ref
 		return String.format("{\"StateRef\": {\"stateRef\": %s}}", value);
 	}
 
-	public int getID(World world, Point me)
+	public Integer getID(World world, Point me)
 	{
 		if(value.type.equals(TokenType.ME)) return world.getCellID(me);
 		if(value.type.equals(TokenType.ARROWCHAIN)) return world.resolveArrowChain(value.data, me);

@@ -8,7 +8,7 @@ import lexicalpkg.Lexer.Token;
 public class AST
 {
 	protected Token value;
-	private List<AST> children;
+	protected List<AST> children;
 	
 	public AST()
 	{

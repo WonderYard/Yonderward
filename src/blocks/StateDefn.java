@@ -2,13 +2,16 @@ package blocks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import automaton.Point;
+import automaton.World;
 import lexicalpkg.Lexer.Token;
 
 public class StateDefn extends Defn
 {
-	private Token color;
-	private List<ClassRef> classRefs = new ArrayList<ClassRef>();
+	public Token color;
+	public List<ClassRef> classRefs = new ArrayList<ClassRef>();
 	private Rules rules;
 
 	public StateDefn(Token value, Token color)
@@ -38,5 +41,13 @@ public class StateDefn extends Defn
 	public Rules getRules()
 	{
 		return rules;
+	}
+
+	public int applyRules(World world, Point me)
+	{
+		Integer newCell = rules.apply(world, me, classRefs);
+		if(newCell == null)
+			return world.getCellID(me);
+		return newCell;
 	}
 }

@@ -16,4 +16,9 @@ public class Point
 		this.y += y;
 		return this;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("(%s, %s)", x, y);
+	}
 }

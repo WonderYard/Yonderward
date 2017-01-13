@@ -1,5 +1,6 @@
 package blocks;
 
+import automaton.Point;
 import automaton.World;
 
 public class Rule extends AST
@@ -25,9 +26,10 @@ public class Rule extends AST
 		return String.format("{\"Rule\": {\"stateRef\": %s, \"expression\": %s}}", stateRef, expression);
 	}
 
-	public StateRef apply(World world)
+	public StateRef apply(World world, Point me)
 	{
-		// TODO apply rules! and classes rules!
-		return stateRef;
+		if(expression == null)
+			return stateRef;
+		return expression.apply(world, me) ? stateRef : null;
 	}
 }

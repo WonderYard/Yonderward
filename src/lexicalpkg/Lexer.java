@@ -33,8 +33,8 @@ public class Lexer
 		RIGHTP("\\)"),
 		LEFTPS("\\["),
 		RIGHTPS("\\]"),
-		HEXNUMBER("\".\""),
-		//HEXNUMBER("#(?:[0-9a-fA-F]{3}){1,2}\\b"),
+		//HEXNUMBER("\".\""),
+		HEXNUMBER("#(?:[0-9a-fA-F]{3}){1,2}\\b"),
 		
 		EOF("$");
 		
@@ -68,6 +68,7 @@ public class Lexer
 		@Override
 		public String toString() 
 		{
+			if(type.equals(TokenType.HEXNUMBER)) return data.replace("\"", "");
 			return String.format("{\"%s\": \"%s\"}", type.name(), data);
 		}
 	}
@@ -115,6 +116,7 @@ public class Lexer
 				return currToken = new Token(tokenType, group);
 			}
 	    }
+		System.out.println("START HERE!!!!!!!!!!!!!!!" + text.substring(index));
 	    throw new InvalidTokenException();
 	}
 

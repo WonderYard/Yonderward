@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import blocks.AST;
+import blocks.Defns;
+import blocks.StateDefn;
+import lexicalpkg.AnotherParser;
 import lexicalpkg.Lexer;
-import lexicalpkg.Parser;
-import automaton.Rule;
-import automaton.State;
-import automaton.World.Neighborhood;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -30,7 +30,6 @@ import javafx.stage.Stage;
 
 public class AppJavaFX extends Application
 {
-	private List<State> states;
 	private World world;
 	
 	private final int WIDTH = 1280;
@@ -60,35 +59,25 @@ public class AppJavaFX extends Application
 		slider.setShowTickMarks(true);
 		slider.setShowTickLabels(true);
 		
-		TextArea textArea = new TextArea(getCodeFromFile(slash+"test"+slash+"rules.txt"));
+		TextArea textArea = new TextArea(getCodeFromFile(slash+"test"+slash+"gol.txt"));
 		textArea.setMinHeight(2 * HEIGHT / 3);
 		textArea.setMinWidth(WIDTH / 3);
 		
 		btnNew.setOnMouseClicked(event -> {
 			
 			newWorld(Integer.parseInt(txfSize.getText()));
-			
-			try {
-				Lexer l = new Lexer(getCodeFromFile(slash+"test"+slash+"rules.txt"));
-				Parser p = new Parser(l);
-				loadRules(p.body());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			slider.setMax(states.size() - 1);
-			draw();
 		});
 		
 		btnLoadRules.setOnMouseClicked(event -> {
 			try {
 				String slash=File.separator;
-				Lexer l = new Lexer(textArea.getText());
-				Parser p = new Parser(l);
-				loadRules(p.body());
+				Lexer l = new Lexer();
+				AnotherParser p = new AnotherParser();
+				loadRules(p.parse(textArea.getText()), world.getSize().x);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			slider.setMax(states.size() - 1);
+			slider.setMax(world.stateDefns.size() - 1);
 		});
 		
 		btnTick.setOnMouseClicked(event -> {
@@ -138,11 +127,10 @@ public class AppJavaFX extends Application
 		draw();
 	}
 
-	private void loadRules(List<State> states)
-	{
-		this.states = states;
-		
-		this.world = new World(40, 40, states, World.Neighborhood.MOORE.points);
+	private void loadRules(AST ast, int size)
+	{	
+		Defns defns = (Defns) ast;
+		this.world = new World(size, size, defns);
 		draw();
 	}
 
@@ -153,20 +141,26 @@ public class AppJavaFX extends Application
 		double cellSize = canvas.getHeight() / gridSize;
 		for(int y = 0; y < gridSize; y++) {
 			for(int x = 0; x < gridSize; x++) {
-				g.setFill(Paint.valueOf(states.get(world.getCell(x, y)).getColor()));
+				g.setFill(Paint.valueOf(((StateDefn) world.stateDefns.get(world.getCell(x, y))).color.data));
 				g.fillRect(Math.floor(x*cellSize), Math.floor(y*cellSize), Math.ceil(cellSize), Math.ceil(cellSize));
 			}
 		}
-		for(int i = 0; i < states.size(); i++) {
-			g.setFill(Paint.valueOf(states.get(i).getColor()));
+		for(int i = 0; i < world.stateDefns.size(); i++) {
+			g.setFill(Paint.valueOf(((StateDefn) world.stateDefns.get(i)).color.data));
 			g.fillRect(Math.floor(i*cellSize), 0, Math.ceil(cellSize), Math.ceil(cellSize));
 		}
 	}
 	
 	private void newWorld(int size)
 	{
-		world = new World(size, size, new ArrayList<>(), Neighborhood.MOORE.points);
-		states = new ArrayList<>();
+		try {
+			Lexer l = new Lexer();
+			AnotherParser p = new AnotherParser();
+			loadRules(p.parse(getCodeFromFile(slash+"test"+slash+"gol.txt")), size);
+			draw();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void evolve()

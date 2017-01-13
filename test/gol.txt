@@ -1,4 +1,5 @@
-state s0 "0"
-	to s1 when 1 in (^ v) s2;
-state s1 "1";
-state s2 "2";
+class Fallable to Air;
+
+state Air #fff to ^ when ^ is Fallable;
+
+state Pebble #fa0 is Fallable;

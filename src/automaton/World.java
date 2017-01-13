@@ -1,6 +1,7 @@
 package automaton;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,49 +9,45 @@ import java.util.Map;
 import blocks.*;
 import lexicalpkg.AnotherParser;
 import lexicalpkg.InvalidTokenException;
+import lexicalpkg.Lexer.Token;
+import lexicalpkg.Lexer.TokenType;
 import lexicalpkg.ParserTester;
 import lexicalpkg.UnexpectedTokenException;
 
 public class World
-{
-	public enum Neighborhood
-	{
-		MOORE(new Point[]{
-			new Point(-1, -1),
-			new Point(-1,  0),
-			new Point(-1,  1),
-			new Point( 0, -1),
-			new Point( 0,  1),
-			new Point( 1, -1),
-			new Point( 1,  0),
-			new Point( 1,  1)
-		})/*,
-		VON_NEUMANN(new Point[]{
-			new Point(-1,  0),
-			new Point( 0, -1),
-			new Point( 0,  1),
-			new Point( 1,  0)
-		})*/;
-		
-		public Point[] points;
-		
-		private Neighborhood(Point[] neighborhood)
-		{
-			this.points = neighborhood;
-		}
-	}
-	
+{	
 	private int cols, rows;
 	private int[][] grid;
-	private Point[] neighborhood;
-	private Defns defns;
+	public Neighborhood neighborhood;
+	public List<Defn> stateDefns = new ArrayList<Defn>();
+	private List<Defn> classDefns = new ArrayList<Defn>();
+	private List<Defn> nbhdDefns = new ArrayList<Defn>();
+	public Map<String,NbhdDefn> nbhdMap = new HashMap<String, NbhdDefn>();
+	public Map<String, ClassDefn> classMap = new HashMap<String, ClassDefn>();
 
 	public World(int cols, int rows, Defns defns) {
 		this.cols = cols;
 		this.rows = rows;
 		grid = new int[cols][rows];
-		this.defns = defns;
-		this.neighborhood = Neighborhood.MOORE.points;
+		this.stateDefns.addAll(defns.getStateDefns());
+		this.classDefns.addAll(defns.getClassDefns());
+		this.nbhdDefns.addAll(defns.getNbhdDefns());
+		
+		for(Defn nbhdDefn : nbhdDefns)
+			this.nbhdMap.put(nbhdDefn.getName(), (NbhdDefn) nbhdDefn);
+		for(Defn classDefn : classDefns)
+			this.classMap.put(classDefn.getName(), (ClassDefn) classDefn);
+		
+		
+		this.neighborhood = new Neighborhood();
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "<^")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "^")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, ">^")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "<")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, ">")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "<v")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "v")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, ">v")));
 	}
 	
 	public Point getSize()
@@ -66,32 +63,27 @@ public class World
 		grid[y][x] = state;
 	}
 	
-	public void evolve() {
+	public void evolve()
+	{
 		int[][] newGrid = new int[cols][rows];
 		for(int y = 0; y < rows; y++) {
 			for(int x = 0; x < cols; x++) {
 				int cell = getCell(x, y);
-				StateDefn state = defns.getStateDefn(cell);
-				List<Rule> rules = state.getRules().getRules();
-				newGrid[y][x] = cell;
-				
-				for(int i = 0; i < rules.size(); i++) {
-					StateRef newCell = rules.get(i).apply(this);
-					if(!(newCell == null)) {
-						newGrid[y][x] = newCell.getID(this, new Point(x, y));
-						break;
-					}
-				}
+				StateDefn stateDefn = (StateDefn) stateDefns.get(cell);
+				newGrid[y][x] = stateDefn.applyRules(this, new Point(x, y));
 			}
 		}
 		grid = newGrid;
 	}
 
-	public int getCellID(Point point) {
-		return grid[point.y][point.x];
+	public Integer getCellID(Point point)
+	{
+		if(point.x >= 0 && point.x < cols && point.y >= 0 && point.y < rows)
+			return grid[point.y][point.x];
+		return null;
 	}
 
-	public int resolveArrowChain(String chain, Point me)
+	public Integer resolveArrowChain(String chain, Point me)
 	{
 		int x = 0;
 		int y = 0;
@@ -109,15 +101,23 @@ public class World
 					y++; break;
 			}
 		}
-		return getCellID(me.add(x, y));
+		return getCellID(new Point(me.x + x, me.y + y));
 	}
 	
 	public int getStateID(String stateName)
 	{
-		List<Defn> stateDefns = defns.getStateDefns();
 		for(int i = 0; i < stateDefns.size(); i++)
 		{
 			if(stateDefns.get(i).getName().equals(stateName)) return i;
+		}
+		throw new RuntimeException();
+	}
+	
+	public int getClassID(String className)
+	{
+		for(int i = 0; i < classDefns.size(); i++)
+		{
+			if(classDefns.get(i).getName().equals(className)) return i;
 		}
 		throw new RuntimeException();
 	}
@@ -128,7 +128,7 @@ public class World
 		String s = "";
 		for(int y = 0; y < rows; y++) {
 			for(int x = 0; x < cols; x++) {
-				System.out.print(getCell(x, y));
+				System.out.print( ((StateDefn) stateDefns.get(getCell(x, y))).color.data.charAt(1));
 			}
 			System.out.println();
 		}
@@ -142,9 +142,10 @@ public class World
 		String code = ParserTester.getCodeFromFile(slash+"test"+slash+"gol.txt");
 		Defns ast = (Defns) parser.parse(code);
 		System.out.println(ast);
-		World world = new World(5, 5, ast);
-		System.out.println(world);
-		world.evolve();
-		System.out.println(world);		
+		World world = new World(10, 10, ast);
+		for(int i = 0; i < 100; i++) {
+			System.out.println(world);
+			world.evolve();
+		}
 	}
 }

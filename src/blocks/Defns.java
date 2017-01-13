@@ -16,22 +16,16 @@ public class Defns extends AST
 		else if(root instanceof NbhdDefn) this.nbhdDefns.add((NbhdDefn) root);
 		else throw new RuntimeException();
 	}
-	
-	
-	
+		
 	@Override
 	public String toString() {
 		return String.format("{\"Defns\": {\"stateDefns\": %s, \"classDefns\": %s, \"nbhdDefns\": %s}}", stateDefns, classDefns, nbhdDefns);
 	}
 
-
-
 	public StateDefn getStateDefn(int cell)
 	{
 		return (StateDefn) stateDefns.get(cell);
 	}
-
-
 
 	public Defns validate()
 	{
@@ -39,10 +33,18 @@ public class Defns extends AST
 		return this;
 	}
 
-
-
 	public List<Defn> getStateDefns()
 	{
 		return stateDefns;
+	}
+	
+	public List<Defn> getClassDefns()
+	{
+		return classDefns;
+	}
+	
+	public List<Defn> getNbhdDefns()
+	{
+		return nbhdDefns;
 	}
 }

@@ -4,7 +4,7 @@ import lexicalpkg.Lexer.Token;
 
 public class NbhdDefn extends Defn
 {
-	private Neighborhood neighborhood;
+	public Neighborhood neighborhood;
 	
 	public NbhdDefn(Token value)
 	{
