@@ -3,7 +3,6 @@ package blocks;
 import automaton.Point;
 import automaton.World;
 import lexicalpkg.Lexer.Token;
-import lexicalpkg.Lexer.TokenType;
 
 public class ClassRef extends Ref
 {
@@ -17,12 +16,14 @@ public class ClassRef extends Ref
 	{
 		return String.format("{\"ClassRef\": {\"classRef\": %s}}", value);
 	}
-	
-	public int getID(World world, Point me)
+
+	@Override
+	public boolean refEqualToID(World world, Point me, Integer stateRefID)
 	{
-		if(value.type.equals(TokenType.ME)) return world.getCellID(me);
-		if(value.type.equals(TokenType.ARROWCHAIN)) return world.resolveArrowChain(value.data, me);
-		if(value.type.equals(TokenType.IDENTIFIER)) return world.getClassID(value.data);
-		throw new RuntimeException();
+		for(ClassRef classRef : ((StateDefn) world.stateDefns.get(stateRefID)).classRefs)
+		{
+			if(classRef.value.data.equals(value.data)) return true;
+		}
+		return false;
 	}
 }

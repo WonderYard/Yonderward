@@ -1,8 +1,10 @@
 package blocks;
 
+import automaton.Point;
+import automaton.World;
 import lexicalpkg.Lexer.Token;
 
-public class Ref extends AST
+public abstract class Ref extends AST
 {
 	public Ref(Token value)
 	{
@@ -14,4 +16,6 @@ public class Ref extends AST
 	{
 		return String.format("{\"Ref\": {\"ref\": %s}}", value);
 	}
+
+	public abstract boolean refEqualToID(World world, Point me, Integer stateRefID);
 }

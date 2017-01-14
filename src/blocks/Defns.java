@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Defns extends AST
 {
-	private List<Defn> stateDefns = new ArrayList<Defn>();
-	private List<Defn> classDefns = new ArrayList<Defn>();
+	private List<RulerDefn> stateDefns = new ArrayList<RulerDefn>();
+	private List<RulerDefn> classDefns = new ArrayList<RulerDefn>();
 	private List<Defn> nbhdDefns = new ArrayList<Defn>();
 
 	public void addDefn(AST root)
@@ -22,23 +22,12 @@ public class Defns extends AST
 		return String.format("{\"Defns\": {\"stateDefns\": %s, \"classDefns\": %s, \"nbhdDefns\": %s}}", stateDefns, classDefns, nbhdDefns);
 	}
 
-	public StateDefn getStateDefn(int cell)
-	{
-		return (StateDefn) stateDefns.get(cell);
-	}
-
-	public Defns validate()
-	{
-		// Check if identifiers are always referencing existing definitions (states, classes and neighborhoods)
-		return this;
-	}
-
-	public List<Defn> getStateDefns()
+	public List<RulerDefn> getStateDefns()
 	{
 		return stateDefns;
 	}
 	
-	public List<Defn> getClassDefns()
+	public List<RulerDefn> getClassDefns()
 	{
 		return classDefns;
 	}

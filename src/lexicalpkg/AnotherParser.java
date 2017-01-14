@@ -9,7 +9,7 @@ public class AnotherParser
 	private Lexer lexer;
 	private AST root;
 	
-	public AnotherParser() throws InvalidTokenException
+	public AnotherParser()
 	{
 		this.lexer = new Lexer();
 	}
@@ -31,7 +31,7 @@ public class AnotherParser
 			lexer.expect(TokenType.SEMICOLON);
 		}
 		while(!lexer.on(TokenType.EOF));
-		root = defns.validate();
+		root = defns;
 	}
 	
 	private void defn() throws UnexpectedTokenException, InvalidTokenException
@@ -64,10 +64,8 @@ public class AnotherParser
 			membershipDecl();
 			stateDefn.addClassRef(root);
 		}
-		
-		rules();
-		stateDefn.setRules(root);
 		root = stateDefn;
+		rules();
 	}
 	
 	private void nbhdDefn() throws InvalidTokenException, UnexpectedTokenException
@@ -91,9 +89,8 @@ public class AnotherParser
 			membershipDecl();
 			classDefn.addClassRef(root);
 		}
-		rules();
-		classDefn.setRules(root);
 		root = classDefn;
+		rules();
 	}
 	
 	private void membershipDecl() throws InvalidTokenException, UnexpectedTokenException
@@ -105,19 +102,19 @@ public class AnotherParser
 	
 	private void rules() throws InvalidTokenException, UnexpectedTokenException
 	{
-		Rules rules = new Rules();
+		RulerDefn ruler = (RulerDefn) root;
 		if(lexer.on(TokenType.TO))
 		{
 			rule();
-			rules.addRule(root);
+			ruler.addRule(root);
 			while(lexer.on(TokenType.COMMA))
 			{
 				lexer.expect(TokenType.COMMA);
 				rule();
-				rules.addRule(root);
+				ruler.addRule(root);
 			}
 		}
-		root = rules;
+		root = ruler;
 	}
 	
 	private void rule() throws InvalidTokenException, UnexpectedTokenException

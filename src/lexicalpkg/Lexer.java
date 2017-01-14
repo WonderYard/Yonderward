@@ -62,7 +62,7 @@ public class Lexer
 		{
 			this.type = type;
 			this.data = data;
-			System.out.println(this);
+//			System.out.println(this);
 		}
 
 		@Override
@@ -116,7 +116,6 @@ public class Lexer
 				return currToken = new Token(tokenType, group);
 			}
 	    }
-		System.out.println("START HERE!!!!!!!!!!!!!!!" + text.substring(index));
 	    throw new InvalidTokenException();
 	}
 

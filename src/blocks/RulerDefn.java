@@ -5,24 +5,30 @@ import java.util.List;
 
 import automaton.Point;
 import automaton.World;
+import lexicalpkg.Lexer.Token;
 
-public class Rules extends AST
+public abstract class RulerDefn extends Defn
 {
-	private List<Rule> rules = new ArrayList<Rule>();
+	protected List<Rule> rules = new ArrayList<Rule>();
+	protected List<ClassRef> classRefs = new ArrayList<ClassRef>();
 
-	public void addRule(AST root)
+	public RulerDefn(Token token)
 	{
-		if(root instanceof Rule) this.rules.add((Rule) root);
+		super(token);
+	}
+	
+	public void addClassRef(AST root)
+	{
+		if(root instanceof ClassRef) this.classRefs.add((ClassRef) root);
 		else throw new RuntimeException();
 	}
-
-	@Override
-	public String toString()
+	
+	public void addRule(AST root)
 	{
-		return String.format("{\"Rules\": {\"rules\": %s}}", rules);
+		this.rules.add((Rule) root);
 	}
-
-	public Integer apply(World world, Point me, List<ClassRef> classRefs)
+	
+	public Integer applyRules(World world, Point me)
 	{
 		if(rules != null) {
 			for(Rule rule : rules) {

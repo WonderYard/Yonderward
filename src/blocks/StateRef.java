@@ -26,4 +26,10 @@ public class StateRef extends Ref
 		if(value.type.equals(TokenType.IDENTIFIER)) return world.getStateID(value.data);
 		throw new RuntimeException();
 	}
+
+	@Override
+	public boolean refEqualToID(World world, Point me, Integer stateRefID)
+	{
+		return stateRefID == getID(world, me);
+	}
 }

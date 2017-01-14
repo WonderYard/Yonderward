@@ -5,7 +5,6 @@ import java.util.List;
 
 import automaton.Point;
 import automaton.World;
-import lexicalpkg.Lexer.Token;
 
 public class Neighborhood extends NbhdDecl
 {
@@ -22,31 +21,15 @@ public class Neighborhood extends NbhdDecl
 		return String.format("{\"Neighborhood\": {\"arrowChains\": %s}}", arrowChains);
 	}
 	
-	public int count(World world, Ref ref, Point me)
+	@Override
+	public int countNeighbors(World world, Point me, Ref ref)
 	{
 		int count = 0;
 		for(ArrowChain chain : arrowChains)
 		{
-			Integer stateID = world.resolveArrowChain(chain.value.data, me);
-			if(stateID == null) continue;
-
-			if(ref instanceof StateRef) {
-				StateRef stateRef = (StateRef) ref;
-				if(stateRef.getID(world, me) == stateID) {
-					count++;
-				}
-			}
-			else if(ref instanceof ClassRef) {
-				for(ClassRef classRef : ((StateDefn) world.stateDefns.get(stateID)).classRefs)
-				{
-					if(classRef.value.data.equals(((ClassRef) ref).value.data)) {
-						count++;
-						break;
-					}
-				}
-			}
-			else throw new RuntimeException();
-
+			Integer stateRefID = world.resolveArrowChain(chain.value.data, me);
+			if(stateRefID == null) continue;
+			if(ref.refEqualToID(world, me, stateRefID)) count++;
 		}
 		return count;
 	}

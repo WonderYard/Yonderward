@@ -38,16 +38,6 @@ public class RelationalPred extends Term
 	{
 		Integer stateRefID = stateRef.getID(world, me);
 		if(stateRefID == null) return false;
-		if(ref instanceof StateRef) {
-			return stateRefID == ((StateRef) ref).getID(world, me);
-		}
-		else if(ref instanceof ClassRef) {
-			for(ClassRef classRef : ((StateDefn) world.stateDefns.get(stateRefID)).classRefs)
-			{
-				if(classRef.value.data.equals(((ClassRef) ref).value.data)) return true;
-			}
-			return false;
-		}
-		throw new RuntimeException();
+		return ref.refEqualToID(world, me, stateRefID);
 	}
 }

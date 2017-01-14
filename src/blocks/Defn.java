@@ -2,11 +2,13 @@ package blocks;
 
 import lexicalpkg.Lexer.Token;
 
-public class Defn extends AST
+public abstract class Defn extends AST
 {
-	public Defn(Token value)
+	private String name;
+	
+	public Defn(Token token)
 	{
-		super(value);
+		this.name = token.data;
 	}
 	
 	@Override
@@ -17,6 +19,6 @@ public class Defn extends AST
 
 	public String getName()
 	{
-		return value.data;
+		return name;
 	}
 }

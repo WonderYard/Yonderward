@@ -1,5 +1,7 @@
 package blocks;
 
+import automaton.Point;
+import automaton.World;
 import lexicalpkg.Lexer.Token;
 
 public class NbhdID extends NbhdDecl
@@ -14,9 +16,10 @@ public class NbhdID extends NbhdDecl
 	{
 		return String.format("{\"NbhdID\": {\"nbhdID\": %s}}", value);
 	}
-	
-	public int count(Ref ref)
+
+	@Override
+	public int countNeighbors(World world, Point me, Ref ref)
 	{
-		return 0;
+		return world.nbhdMap.get(value.data).neighborhood.countNeighbors(world, me, ref);
 	}
 }

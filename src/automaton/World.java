@@ -1,43 +1,30 @@
 package automaton;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import blocks.*;
-import lexicalpkg.AnotherParser;
-import lexicalpkg.InvalidTokenException;
 import lexicalpkg.Lexer.Token;
 import lexicalpkg.Lexer.TokenType;
-import lexicalpkg.ParserTester;
-import lexicalpkg.UnexpectedTokenException;
 
 public class World
 {	
 	private int cols, rows;
 	private int[][] grid;
 	public Neighborhood neighborhood;
-	public List<Defn> stateDefns = new ArrayList<Defn>();
-	private List<Defn> classDefns = new ArrayList<Defn>();
-	private List<Defn> nbhdDefns = new ArrayList<Defn>();
+	public List<RulerDefn> stateDefns;
+	private List<RulerDefn> classDefns;
+	private List<Defn> nbhdDefns;
 	public Map<String,NbhdDefn> nbhdMap = new HashMap<String, NbhdDefn>();
 	public Map<String, ClassDefn> classMap = new HashMap<String, ClassDefn>();
-
-	public World(int cols, int rows, Defns defns) {
+	
+	public World(int cols, int rows)
+	{
 		this.cols = cols;
 		this.rows = rows;
 		grid = new int[cols][rows];
-		this.stateDefns.addAll(defns.getStateDefns());
-		this.classDefns.addAll(defns.getClassDefns());
-		this.nbhdDefns.addAll(defns.getNbhdDefns());
-		
-		for(Defn nbhdDefn : nbhdDefns)
-			this.nbhdMap.put(nbhdDefn.getName(), (NbhdDefn) nbhdDefn);
-		for(Defn classDefn : classDefns)
-			this.classMap.put(classDefn.getName(), (ClassDefn) classDefn);
-		
 		
 		this.neighborhood = new Neighborhood();
 		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "<^")));
@@ -48,6 +35,12 @@ public class World
 		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "<v")));
 		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "v")));
 		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, ">v")));
+	}
+	
+	public World(int cols, int rows, Defns defns)
+	{
+		this(cols, rows);
+		setDefns(defns);
 	}
 	
 	public Point getSize()
@@ -68,8 +61,7 @@ public class World
 		int[][] newGrid = new int[cols][rows];
 		for(int y = 0; y < rows; y++) {
 			for(int x = 0; x < cols; x++) {
-				int cell = getCell(x, y);
-				StateDefn stateDefn = (StateDefn) stateDefns.get(cell);
+				RulerDefn stateDefn = stateDefns.get(getCell(x, y));
 				newGrid[y][x] = stateDefn.applyRules(this, new Point(x, y));
 			}
 		}
@@ -121,31 +113,27 @@ public class World
 		}
 		throw new RuntimeException();
 	}
-	
-	@Override
-	public String toString()
+
+	public void setDefns(Defns defns)
 	{
-		String s = "";
+		stateDefns = new ArrayList<RulerDefn>();
+		classDefns = new ArrayList<RulerDefn>();
+		nbhdDefns = new ArrayList<Defn>();
+		stateDefns.addAll(defns.getStateDefns());
+		classDefns.addAll(defns.getClassDefns());
+		nbhdDefns.addAll(defns.getNbhdDefns());
+		
+		for(Defn nbhdDefn : nbhdDefns)
+			nbhdMap.put(nbhdDefn.getName(), (NbhdDefn) nbhdDefn);
+		for(Defn classDefn : classDefns)
+			classMap.put(classDefn.getName(), (ClassDefn) classDefn);
+		
+		int totalStates = stateDefns.size();
 		for(int y = 0; y < rows; y++) {
 			for(int x = 0; x < cols; x++) {
-				System.out.print( ((StateDefn) stateDefns.get(getCell(x, y))).color.data.charAt(1));
+				int cell = getCell(x, y);
+				if(cell >= totalStates) setCell(x, y, 0);
 			}
-			System.out.println();
-		}
-		return s;
-	}
-	
-	public static void main(String[] args) throws InvalidTokenException, UnexpectedTokenException
-	{
-		String slash=File.separator;
-		AnotherParser parser = new AnotherParser();
-		String code = ParserTester.getCodeFromFile(slash+"test"+slash+"gol.txt");
-		Defns ast = (Defns) parser.parse(code);
-		System.out.println(ast);
-		World world = new World(10, 10, ast);
-		for(int i = 0; i < 100; i++) {
-			System.out.println(world);
-			world.evolve();
 		}
 	}
 }

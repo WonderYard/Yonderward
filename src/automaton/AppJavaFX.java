@@ -4,15 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import blocks.AST;
 import blocks.Defns;
 import blocks.StateDefn;
 import lexicalpkg.AnotherParser;
-import lexicalpkg.Lexer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -65,15 +60,14 @@ public class AppJavaFX extends Application
 		
 		btnNew.setOnMouseClicked(event -> {
 			
-			newWorld(Integer.parseInt(txfSize.getText()));
+			newWorld(Integer.parseInt(txfSize.getText()), textArea.getText());
+			slider.setMax(world.stateDefns.size() - 1);
 		});
 		
 		btnLoadRules.setOnMouseClicked(event -> {
 			try {
-				String slash=File.separator;
-				Lexer l = new Lexer();
 				AnotherParser p = new AnotherParser();
-				loadRules(p.parse(textArea.getText()), world.getSize().x);
+				loadRules(p.parse(textArea.getText()));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -127,10 +121,10 @@ public class AppJavaFX extends Application
 		draw();
 	}
 
-	private void loadRules(AST ast, int size)
+	private void loadRules(AST ast)
 	{	
 		Defns defns = (Defns) ast;
-		this.world = new World(size, size, defns);
+		this.world.setDefns(defns);
 		draw();
 	}
 
@@ -141,22 +135,22 @@ public class AppJavaFX extends Application
 		double cellSize = canvas.getHeight() / gridSize;
 		for(int y = 0; y < gridSize; y++) {
 			for(int x = 0; x < gridSize; x++) {
-				g.setFill(Paint.valueOf(((StateDefn) world.stateDefns.get(world.getCell(x, y))).color.data));
+				g.setFill(Paint.valueOf(((StateDefn) world.stateDefns.get(world.getCell(x, y))).color));
 				g.fillRect(Math.floor(x*cellSize), Math.floor(y*cellSize), Math.ceil(cellSize), Math.ceil(cellSize));
 			}
 		}
 		for(int i = 0; i < world.stateDefns.size(); i++) {
-			g.setFill(Paint.valueOf(((StateDefn) world.stateDefns.get(i)).color.data));
+			g.setFill(Paint.valueOf(((StateDefn) world.stateDefns.get(i)).color));
 			g.fillRect(Math.floor(i*cellSize), 0, Math.ceil(cellSize), Math.ceil(cellSize));
 		}
 	}
 	
-	private void newWorld(int size)
+	private void newWorld(int size, String code)
 	{
 		try {
-			Lexer l = new Lexer();
+			world = new World(size, size);
 			AnotherParser p = new AnotherParser();
-			loadRules(p.parse(getCodeFromFile(slash+"test"+slash+"gol.txt")), size);
+			loadRules(p.parse(code));
 			draw();
 		} catch (Exception e) {
 			e.printStackTrace();

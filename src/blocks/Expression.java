@@ -4,7 +4,7 @@ import automaton.Point;
 import automaton.World;
 import lexicalpkg.Lexer.Token;
 
-public class Expression extends AST
+public abstract class Expression extends AST
 {
 	public Expression() {}
 	
@@ -19,8 +19,5 @@ public class Expression extends AST
 		return String.format("{\"Expression\": {\"expression\": %s}}", value);
 	}
 
-	public boolean apply(World world, Point me)
-	{
-		throw new RuntimeException();
-	}
+	public abstract boolean apply(World world, Point me);
 }
