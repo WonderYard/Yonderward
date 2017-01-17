@@ -1,19 +1,58 @@
 package lexicalpkg;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import lexicalpkg.TokenType.BasicTokenType;
-
 public class Lexer
 {
-	//Contains all the type of tokens allowed by our grammar
-	
-	
-	//Allows to create Tokens with associated data
+	public static enum TokenType 
+	{
+		NEWLINE("\n", true),
+		WHITESPACE("\\s+", true),
+		COMMENT_MULTI("\\/\\*[\\s\\S]*?\\*\\/", true),
+
+		NUMBER("-?[0-9]+"),
+		BINARYOP("(xor|and|or)\\b"),
+		EVOLVE("evolve\\b"), 
+		STATE("state\\b"),
+		NEIGHBORHOOD("neighborhood\\b"),
+		CLASS("class\\b"),
+		IS("is\\b"),
+		TO("to\\b"),
+		ME("me\\b"),
+		WHEN("when\\b"),
+		COMMA(","),
+		SEMICOLON(";"),
+		EQUAL("="),
+		IN("in\\b"),
+		NOT("not\\b"),
+		BOOL_CONST("(true|false|guess)\\b"),
+		ARROWCHAIN("[\\^<v>]+"),
+		IDENTIFIER("([a-zA-Z][0-9a-zA-Z]*)\\b"),
+		LEFTP("\\("),
+		RIGHTP("\\)"),
+		LEFTPS("\\["),
+		RIGHTPS("\\]"),
+		//HEXNUMBER("\".\""),
+		HEXNUMBER("#(?:[0-9a-fA-F]{3}){1,2}\\b"),
+		
+		EOF("$");
+		
+		public final Pattern pattern;
+		private boolean ignore;
+		
+		private TokenType(String pattern) 
+		{
+			this.pattern = Pattern.compile(pattern);
+		}
+		
+		private TokenType(String pattern, boolean ignore)
+		{
+			this(pattern);
+			this.ignore = ignore;
+		}
+	}
+
 	public static class Token 
 	{
 		public TokenType type;
@@ -23,58 +62,98 @@ public class Lexer
 		{
 			this.type = type;
 			this.data = data;
+//			System.out.println(this);
 		}
-		
-		//Utility for printing
+
 		@Override
 		public String toString() 
 		{
-			return String.format("(%s %s)", type.getName(), data);
+			if(type.equals(TokenType.HEXNUMBER)) return data.replace("\"", "");
+			return String.format("{\"%s\": \"%s\"}", type.name(), data);
 		}
 	}
 	
 	private String text;
+	private Token currToken;
 	private int index;
+	private int lineNumberBuffer, lineNumber, colNumber;
+	private int colNumberBuffer;
 	
-	public Lexer(String filename) throws InvalidTokenException
+	public void init(String text) throws InvalidTokenException
 	{
-		String code = getCodeFromFile(filename);
-		this.text = code;
+		this.text = text;
+		this.index = 0;
+		this.lineNumberBuffer = 1;
+		this.lineNumber = 0;
+		this.colNumber = 0;
+		nextToken();
 	}
 	
-	public Token lex() throws InvalidTokenException 
-	{
-	   if(index == text.length()) return new Token(BasicTokenType.EOF, "EOF");
-		
-		for (TokenType tokenType : BasicTokenType.values())
+	private Token nextToken() throws InvalidTokenException 
+	{	
+		for (TokenType tokenType : TokenType.values())
 	    {
-			Matcher match = tokenType.getPattern().matcher(text);
+			Matcher match = tokenType.pattern.matcher(text);
 			match.region(index, text.length());
 			if(match.lookingAt())
 			{
 				String group = match.group();
 				index += group.length();
-				if(tokenType.isIgnored()) return lex();
-				return new Token(tokenType, group);
+				colNumberBuffer += group.length();
+				if(tokenType.ignore)
+				{
+					if(tokenType.equals(TokenType.NEWLINE))
+					{
+						lineNumberBuffer++;
+						colNumberBuffer = 1;
+					}
+					else if(tokenType.equals(TokenType.COMMENT_MULTI))
+					{
+						lineNumberBuffer += group.split("\n").length - 1;
+					}
+					return nextToken();
+				}
+				return currToken = new Token(tokenType, group);
 			}
 	    }
 	    throw new InvalidTokenException();
 	}
-	
 
-	private static String getCodeFromFile(String filename)
+	public boolean on(TokenType... types)
 	{
-		StringBuilder str = new StringBuilder();
-		try {
-			Files.newBufferedReader(Paths.get(new File(".").getCanonicalPath() + "/"+filename)).lines().forEach(l -> {
-				str.append(l);
-				str.append("\n");
-			});
-		} catch (IOException e) {
-			e.printStackTrace();
+		for(TokenType type : types)
+		{
+			if(currToken.type.equals(type)) return true;
 		}
-		
-		return str.toString();
+		return false;
+	}
+	
+	Token expect(TokenType type) throws InvalidTokenException, UnexpectedTokenException
+	{
+		if(on(type))
+		{
+			lineNumber = lineNumberBuffer;
+			colNumber = colNumberBuffer;
+			
+			Token t = currToken;
+			nextToken();
+			return t;
+		}
+		throw new UnexpectedTokenException(this, type);
 	}
 
+	public int lineNumber()
+	{
+		return lineNumber;
+	}
+	
+	public int colNumber()
+	{
+		return colNumber;
+	}
+	
+	public Token currToken()
+	{
+		return currToken;
+	}
 }

@@ -1,8 +1,32 @@
-state dead #000000
+neighborhood nbhd (^ v < >);
 
-state alive #ffffff
-evolve dead to alive when alive 2 3
+class Heater;
+class Wire
+	to wireHeat when 1 in nbhd is Heater,
+	to wireOn when 1 in nbhd wireHeat;
 
-evolve alive to alive when alive 3 3
+state blank    #22232b;
 
-evolve alive to dead 
+state wireOff  #444855 is Wire
+	to wireOn when 1 in nbhd wireOn;
+
+state wireOn   #77ffff is Wire
+	to wireTail when 1 in nbhd wireTail;
+
+state wireTail #60a2aa is Wire
+	to wireOff;
+
+state wireHeat #ccffff
+	to wireTail when not 1 in nbhd is Heater;
+
+state listOff  #432c82;
+state listOn   #865dff;
+
+state genOff   #003c80;
+state genOn    #0077ff is Heater;
+
+state invOn    #f0006c;
+state invOff   #7a0038;
+
+state xorOff   #568017;
+state xorOn    #a3f32c;

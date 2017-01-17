@@ -1,3 +1,5 @@
- statexor ciao #fafafa
- 
- qw
+state void #fff
+state water #08f
+
+evolve water to void when void 1 in (0,1)
+evolve void to water when water 1 in (0,-1)
