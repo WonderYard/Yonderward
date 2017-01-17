@@ -1,22 +1,51 @@
 package automaton;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import blocks.*;
+import lexicalpkg.Lexer.Token;
+import lexicalpkg.Lexer.TokenType;
+
 public class World
-{
+{	
 	private int cols, rows;
 	private int[][] grid;
-	private List<State> states;
-	private Point[] neighborhood;
-
-	public World(int cols, int rows, List<State> states, Point[] neighborhood) {
+	public Neighborhood neighborhood;
+	public List<RulerDefn> stateDefns;
+	private List<RulerDefn> classDefns;
+	private List<Defn> nbhdDefns;
+	public Map<String,NbhdDefn> nbhdMap = new HashMap<String, NbhdDefn>();
+	public Map<String, ClassDefn> classMap = new HashMap<String, ClassDefn>();
+	
+	public World(int cols, int rows)
+	{
 		this.cols = cols;
 		this.rows = rows;
 		grid = new int[cols][rows];
-		this.states = states;
-		this.neighborhood = neighborhood;
+		
+		this.neighborhood = new Neighborhood();
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "<^")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "^")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, ">^")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "<")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, ">")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "<v")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, "v")));
+		this.neighborhood.addArrowChain(new ArrowChain(new Token(TokenType.ARROWCHAIN, ">v")));
+	}
+	
+	public World(int cols, int rows, Defns defns)
+	{
+		this(cols, rows);
+		setDefns(defns);
+	}
+	
+	public Point getSize()
+	{
+		return new Point(cols, rows);
 	}
 	
 	public int getCell(int x, int y) {
@@ -27,47 +56,84 @@ public class World
 		grid[y][x] = state;
 	}
 	
-	public void addState(String color) {
-		states.add(new State(color));
-	}
-	
-	private Map<Integer, Integer> getNeighbors(int x, int y) {
-		Map<Integer, Integer> neighbors = new HashMap<Integer, Integer>();
-		
-		for(int i = 0; i < neighborhood.length; i++) {
-			int nx = this.neighborhood[i].x + x;
-			int ny = this.neighborhood[i].y + y;
-			if(validateNeighbor(nx, ny)) {
-				int cell = this.getCell(nx, ny);
-				neighbors.put(cell, neighbors.getOrDefault(cell, 0) + 1);
-			}
-		}
-		return neighbors;
-	}
-	
-	private boolean validateNeighbor(int x, int y) {
-		if(x < 0 || y < 0 || x >= this.rows || y >= this.cols) return false;
-		return true;
-	}
-	
-	public void evolve() {
+	public void evolve()
+	{
 		int[][] newGrid = new int[cols][rows];
 		for(int y = 0; y < rows; y++) {
 			for(int x = 0; x < cols; x++) {
-				int cell = getCell(x, y);
-				Map<Integer, Integer> neighbors = getNeighbors(x, y);
-				List<Rule> rules = states.get(cell).rules;
-				newGrid[y][x] = cell;
-				
-				for(int i = 0; i < rules.size(); i++) {
-					int newCell = rules.get(i).apply(neighbors);
-					if(!(newCell == -1)) {
-						newGrid[y][x] = newCell;
-						break;
-					}
-				}
+				RulerDefn stateDefn = stateDefns.get(getCell(x, y));
+				newGrid[y][x] = stateDefn.applyRules(this, new Point(x, y));
 			}
 		}
 		grid = newGrid;
+	}
+
+	public Integer getCellID(Point point)
+	{
+		if(point.x >= 0 && point.x < cols && point.y >= 0 && point.y < rows)
+			return grid[point.y][point.x];
+		return null;
+	}
+
+	public Integer resolveArrowChain(String chain, Point me)
+	{
+		int x = 0;
+		int y = 0;
+		for(char c : chain.toCharArray())
+		{
+			switch(c)
+			{
+				case '>':
+					x++; break;
+				case '<':
+					x--; break;
+				case '^':
+					y--; break;
+				case 'v':
+					y++; break;
+			}
+		}
+		return getCellID(new Point(me.x + x, me.y + y));
+	}
+	
+	public int getStateID(String stateName)
+	{
+		for(int i = 0; i < stateDefns.size(); i++)
+		{
+			if(stateDefns.get(i).getName().equals(stateName)) return i;
+		}
+		throw new RuntimeException();
+	}
+	
+	public int getClassID(String className)
+	{
+		for(int i = 0; i < classDefns.size(); i++)
+		{
+			if(classDefns.get(i).getName().equals(className)) return i;
+		}
+		throw new RuntimeException();
+	}
+
+	public void setDefns(Defns defns)
+	{
+		stateDefns = new ArrayList<RulerDefn>();
+		classDefns = new ArrayList<RulerDefn>();
+		nbhdDefns = new ArrayList<Defn>();
+		stateDefns.addAll(defns.getStateDefns());
+		classDefns.addAll(defns.getClassDefns());
+		nbhdDefns.addAll(defns.getNbhdDefns());
+		
+		for(Defn nbhdDefn : nbhdDefns)
+			nbhdMap.put(nbhdDefn.getName(), (NbhdDefn) nbhdDefn);
+		for(Defn classDefn : classDefns)
+			classMap.put(classDefn.getName(), (ClassDefn) classDefn);
+		
+		int totalStates = stateDefns.size();
+		for(int y = 0; y < rows; y++) {
+			for(int x = 0; x < cols; x++) {
+				int cell = getCell(x, y);
+				if(cell >= totalStates) setCell(x, y, 0);
+			}
+		}
 	}
 }

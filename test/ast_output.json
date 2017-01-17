@@ -1,0 +1,2841 @@
+{
+     "ROOT": {
+          "value": null,
+          "children": [{
+               "CLASS_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Fallable"
+                    },
+                    "children": [{
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": []
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "and"
+                                                            },
+                                                            "children": [{
+                                                                 "NOT": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "REL_PRED": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "ARROWCHAIN": "v"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }, {
+                                                                                     "CLASS_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Support"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "2"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Air"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "NOT": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "1"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "DuctTape"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Air"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "and"
+                                                            },
+                                                            "children": [{
+                                                                 "NOT": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "REL_PRED": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "ARROWCHAIN": "v"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }, {
+                                                                                     "CLASS_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Support"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "4"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Water"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "NOT": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "1"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "DuctTape"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Water"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "or"
+                                                  },
+                                                  "children": [{
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "and"
+                                                            },
+                                                            "children": [{
+                                                                 "REL_PRED": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "ARROWCHAIN": "v"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }, {
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "ConveyorLeft"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "NOT": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "REL_PRED": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "ARROWCHAIN": "<"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }, {
+                                                                                     "CLASS_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Passthru"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "and"
+                                                            },
+                                                            "children": [{
+                                                                 "REL_PRED": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "ARROWCHAIN": "v"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }, {
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "ConveyorRight"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "NOT": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "REL_PRED": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "ARROWCHAIN": ">"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }, {
+                                                                                     "CLASS_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Passthru"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "ME": "me"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "CLASS_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Passthru"
+                    },
+                    "children": [{
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": []
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "REL_PRED": {
+                                                  "value": null,
+                                                  "children": [{
+                                                       "STATE_REF": {
+                                                            "value": {
+                                                                 "ARROWCHAIN": "^"
+                                                            },
+                                                            "children": []
+                                                       }
+                                                  }, {
+                                                       "CLASS_REF": {
+                                                            "value": {
+                                                                 "IDENTIFIER": "Fallable"
+                                                            },
+                                                            "children": []
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "ARROWCHAIN": "^"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": ">"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "CLASS_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Fallable"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "v>"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "ConveyorLeft"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "ARROWCHAIN": ">"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "<"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "CLASS_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Fallable"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "v<"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "ConveyorRight"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "ARROWCHAIN": "<"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "CLASS_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Flammable"
+                    },
+                    "children": [{
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": []
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "ADJ_PRED": {
+                                                  "value": {
+                                                       "NUMBER": "1"
+                                                  },
+                                                  "children": [{
+                                                       "CLASS_REF": {
+                                                            "value": {
+                                                                 "IDENTIFIER": "Burner"
+                                                            },
+                                                            "children": []
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Fire"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "CLASS_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Steamy"
+                    },
+                    "children": [{
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": []
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "or"
+                                                  },
+                                                  "children": [{
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "or"
+                                                            },
+                                                            "children": [{
+                                                                 "BIN_OP": {
+                                                                      "value": {
+                                                                           "BINARYOP": "or"
+                                                                      },
+                                                                      "children": [{
+                                                                           "BIN_OP": {
+                                                                                "value": {
+                                                                                     "BINARYOP": "or"
+                                                                                },
+                                                                                "children": [{
+                                                                                     "REL_PRED": {
+                                                                                          "value": null,
+                                                                                          "children": [{
+                                                                                               "STATE_REF": {
+                                                                                                    "value": {
+                                                                                                         "ARROWCHAIN": "<"
+                                                                                                    },
+                                                                                                    "children": []
+                                                                                               }
+                                                                                          }, {
+                                                                                               "STATE_REF": {
+                                                                                                    "value": {
+                                                                                                         "IDENTIFIER": "Water"
+                                                                                                    },
+                                                                                                    "children": []
+                                                                                               }
+                                                                                          }]
+                                                                                     }
+                                                                                }, {
+                                                                                     "REL_PRED": {
+                                                                                          "value": null,
+                                                                                          "children": [{
+                                                                                               "STATE_REF": {
+                                                                                                    "value": {
+                                                                                                         "ARROWCHAIN": ">"
+                                                                                                    },
+                                                                                                    "children": []
+                                                                                               }
+                                                                                          }, {
+                                                                                               "STATE_REF": {
+                                                                                                    "value": {
+                                                                                                         "IDENTIFIER": "Water"
+                                                                                                    },
+                                                                                                    "children": []
+                                                                                               }
+                                                                                          }]
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }, {
+                                                                           "REL_PRED": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "ARROWCHAIN": "^<"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }, {
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Water"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "REL_PRED": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "ARROWCHAIN": "^>"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }, {
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Water"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "^"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Water"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Water"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Air"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "CLASS_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Burner"
+                    },
+                    "children": [{
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": []
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": []
+                         }
+                    }]
+               }
+          }, {
+               "CLASS_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Support"
+                    },
+                    "children": [{
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": []
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": []
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Air"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": ""
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Passthru"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "or"
+                                                  },
+                                                  "children": [{
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "or"
+                                                            },
+                                                            "children": [{
+                                                                 "BIN_OP": {
+                                                                      "value": {
+                                                                           "BINARYOP": "or"
+                                                                      },
+                                                                      "children": [{
+                                                                           "BIN_OP": {
+                                                                                "value": {
+                                                                                     "BINARYOP": "or"
+                                                                                },
+                                                                                "children": [{
+                                                                                     "BIN_OP": {
+                                                                                          "value": {
+                                                                                               "BINARYOP": "or"
+                                                                                          },
+                                                                                          "children": [{
+                                                                                               "BIN_OP": {
+                                                                                                    "value": {
+                                                                                                         "BINARYOP": "or"
+                                                                                                    },
+                                                                                                    "children": [{
+                                                                                                         "REL_PRED": {
+                                                                                                              "value": null,
+                                                                                                              "children": [{
+                                                                                                                   "STATE_REF": {
+                                                                                                                        "value": {
+                                                                                                                             "ARROWCHAIN": "^"
+                                                                                                                        },
+                                                                                                                        "children": []
+                                                                                                                   }
+                                                                                                              }, {
+                                                                                                                   "STATE_REF": {
+                                                                                                                        "value": {
+                                                                                                                             "IDENTIFIER": "Water"
+                                                                                                                        },
+                                                                                                                        "children": []
+                                                                                                                   }
+                                                                                                              }]
+                                                                                                         }
+                                                                                                    }, {
+                                                                                                         "REL_PRED": {
+                                                                                                              "value": null,
+                                                                                                              "children": [{
+                                                                                                                   "STATE_REF": {
+                                                                                                                        "value": {
+                                                                                                                             "ARROWCHAIN": "^<"
+                                                                                                                        },
+                                                                                                                        "children": []
+                                                                                                                   }
+                                                                                                              }, {
+                                                                                                                   "STATE_REF": {
+                                                                                                                        "value": {
+                                                                                                                             "IDENTIFIER": "Water"
+                                                                                                                        },
+                                                                                                                        "children": []
+                                                                                                                   }
+                                                                                                              }]
+                                                                                                         }
+                                                                                                    }]
+                                                                                               }
+                                                                                          }, {
+                                                                                               "REL_PRED": {
+                                                                                                    "value": null,
+                                                                                                    "children": [{
+                                                                                                         "STATE_REF": {
+                                                                                                              "value": {
+                                                                                                                   "ARROWCHAIN": "^>"
+                                                                                                              },
+                                                                                                              "children": []
+                                                                                                         }
+                                                                                                    }, {
+                                                                                                         "STATE_REF": {
+                                                                                                              "value": {
+                                                                                                                   "IDENTIFIER": "Water"
+                                                                                                              },
+                                                                                                              "children": []
+                                                                                                         }
+                                                                                                    }]
+                                                                                               }
+                                                                                          }]
+                                                                                     }
+                                                                                }, {
+                                                                                     "BIN_OP": {
+                                                                                          "value": {
+                                                                                               "BINARYOP": "and"
+                                                                                          },
+                                                                                          "children": [{
+                                                                                               "REL_PRED": {
+                                                                                                    "value": null,
+                                                                                                    "children": [{
+                                                                                                         "STATE_REF": {
+                                                                                                              "value": {
+                                                                                                                   "ARROWCHAIN": "<"
+                                                                                                              },
+                                                                                                              "children": []
+                                                                                                         }
+                                                                                                    }, {
+                                                                                                         "STATE_REF": {
+                                                                                                              "value": {
+                                                                                                                   "IDENTIFIER": "Water"
+                                                                                                              },
+                                                                                                              "children": []
+                                                                                                         }
+                                                                                                    }]
+                                                                                               }
+                                                                                          }, {
+                                                                                               "REL_PRED": {
+                                                                                                    "value": null,
+                                                                                                    "children": [{
+                                                                                                         "STATE_REF": {
+                                                                                                              "value": {
+                                                                                                                   "ARROWCHAIN": "v<"
+                                                                                                              },
+                                                                                                              "children": []
+                                                                                                         }
+                                                                                                    }, {
+                                                                                                         "CLASS_REF": {
+                                                                                                              "value": {
+                                                                                                                   "IDENTIFIER": "Support"
+                                                                                                              },
+                                                                                                              "children": []
+                                                                                                         }
+                                                                                                    }]
+                                                                                               }
+                                                                                          }]
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }, {
+                                                                           "BIN_OP": {
+                                                                                "value": {
+                                                                                     "BINARYOP": "and"
+                                                                                },
+                                                                                "children": [{
+                                                                                     "BIN_OP": {
+                                                                                          "value": {
+                                                                                               "BINARYOP": "and"
+                                                                                          },
+                                                                                          "children": [{
+                                                                                               "REL_PRED": {
+                                                                                                    "value": null,
+                                                                                                    "children": [{
+                                                                                                         "STATE_REF": {
+                                                                                                              "value": {
+                                                                                                                   "ARROWCHAIN": "<"
+                                                                                                              },
+                                                                                                              "children": []
+                                                                                                         }
+                                                                                                    }, {
+                                                                                                         "STATE_REF": {
+                                                                                                              "value": {
+                                                                                                                   "IDENTIFIER": "Water"
+                                                                                                              },
+                                                                                                              "children": []
+                                                                                                         }
+                                                                                                    }]
+                                                                                               }
+                                                                                          }, {
+                                                                                               "REL_PRED": {
+                                                                                                    "value": null,
+                                                                                                    "children": [{
+                                                                                                         "STATE_REF": {
+                                                                                                              "value": {
+                                                                                                                   "ARROWCHAIN": "v<"
+                                                                                                              },
+                                                                                                              "children": []
+                                                                                                         }
+                                                                                                    }, {
+                                                                                                         "STATE_REF": {
+                                                                                                              "value": {
+                                                                                                                   "IDENTIFIER": "Water"
+                                                                                                              },
+                                                                                                              "children": []
+                                                                                                         }
+                                                                                                    }]
+                                                                                               }
+                                                                                          }]
+                                                                                     }
+                                                                                }, {
+                                                                                     "REL_PRED": {
+                                                                                          "value": null,
+                                                                                          "children": [{
+                                                                                               "STATE_REF": {
+                                                                                                    "value": {
+                                                                                                         "ARROWCHAIN": "v"
+                                                                                                    },
+                                                                                                    "children": []
+                                                                                               }
+                                                                                          }, {
+                                                                                               "STATE_REF": {
+                                                                                                    "value": {
+                                                                                                         "IDENTIFIER": "Water"
+                                                                                                    },
+                                                                                                    "children": []
+                                                                                               }
+                                                                                          }]
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "BIN_OP": {
+                                                                      "value": {
+                                                                           "BINARYOP": "and"
+                                                                      },
+                                                                      "children": [{
+                                                                           "REL_PRED": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "ARROWCHAIN": ">"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }, {
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Water"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }, {
+                                                                           "REL_PRED": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "ARROWCHAIN": "v>"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }, {
+                                                                                     "CLASS_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Support"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "and"
+                                                            },
+                                                            "children": [{
+                                                                 "BIN_OP": {
+                                                                      "value": {
+                                                                           "BINARYOP": "and"
+                                                                      },
+                                                                      "children": [{
+                                                                           "REL_PRED": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "ARROWCHAIN": ">"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }, {
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Water"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }, {
+                                                                           "REL_PRED": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "ARROWCHAIN": "v>"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }, {
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Water"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "REL_PRED": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "ARROWCHAIN": "v"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }, {
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Water"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Water"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "or"
+                                                  },
+                                                  "children": [{
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "or"
+                                                            },
+                                                            "children": [{
+                                                                 "REL_PRED": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "ARROWCHAIN": "v"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }, {
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Steam"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "REL_PRED": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "ARROWCHAIN": "v<"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }, {
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Steam"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "v>"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Steam"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Steam"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "or"
+                                                  },
+                                                  "children": [{
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "or"
+                                                            },
+                                                            "children": [{
+                                                                 "REL_PRED": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "ARROWCHAIN": "v"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }, {
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Smoke"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "REL_PRED": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "ARROWCHAIN": "v<"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }, {
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Smoke"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "v>"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Smoke"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Smoke"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "ADJ_PRED": {
+                                                  "value": {
+                                                       "NUMBER": "1"
+                                                  },
+                                                  "children": [{
+                                                       "STATE_REF": {
+                                                            "value": {
+                                                                 "IDENTIFIER": "Spark"
+                                                            },
+                                                            "children": []
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Zappy"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Water"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "~"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Passthru"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "or"
+                                                  },
+                                                  "children": [{
+                                                       "ADJ_PRED": {
+                                                            "value": {
+                                                                 "NUMBER": "1"
+                                                            },
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Fire"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "ADJ_PRED": {
+                                                            "value": {
+                                                                 "NUMBER": "1"
+                                                            },
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Magma"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Steam"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "or"
+                                                  },
+                                                  "children": [{
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "or"
+                                                            },
+                                                            "children": [{
+                                                                 "REL_PRED": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "ARROWCHAIN": "v"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }, {
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Bubble"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "REL_PRED": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "ARROWCHAIN": "v"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }, {
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Smoke"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "v"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Steam"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Bubble"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "ADJ_PRED": {
+                                                            "value": {
+                                                                 "NUMBER": "3"
+                                                            },
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Fish"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "ADJ_PRED": {
+                                                            "value": {
+                                                                 "NUMBER": "5"
+                                                            },
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Water"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Fish"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Fire"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "%"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Passthru"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Burner"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "or"
+                                                  },
+                                                  "children": [{
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "or"
+                                                            },
+                                                            "children": [{
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "1"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Water"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "NOT": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "ADJ_PRED": {
+                                                                                "value": {
+                                                                                     "NUMBER": "1"
+                                                                                },
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Air"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "BIN_OP": {
+                                                            "value": {
+                                                                 "BINARYOP": "and"
+                                                            },
+                                                            "children": [{
+                                                                 "BIN_OP": {
+                                                                      "value": {
+                                                                           "BINARYOP": "and"
+                                                                      },
+                                                                      "children": [{
+                                                                           "NOT": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "ADJ_PRED": {
+                                                                                          "value": {
+                                                                                               "NUMBER": "1"
+                                                                                          },
+                                                                                          "children": [{
+                                                                                               "STATE_REF": {
+                                                                                                    "value": {
+                                                                                                         "IDENTIFIER": "Torch"
+                                                                                                    },
+                                                                                                    "children": []
+                                                                                               }
+                                                                                          }]
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }, {
+                                                                           "NOT": {
+                                                                                "value": null,
+                                                                                "children": [{
+                                                                                     "ADJ_PRED": {
+                                                                                          "value": {
+                                                                                               "NUMBER": "1"
+                                                                                          },
+                                                                                          "children": [{
+                                                                                               "STATE_REF": {
+                                                                                                    "value": {
+                                                                                                         "IDENTIFIER": "DuctTape"
+                                                                                                    },
+                                                                                                    "children": []
+                                                                                               }
+                                                                                          }]
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }, {
+                                                                 "NOT": {
+                                                                      "value": null,
+                                                                      "children": [{
+                                                                           "ADJ_PRED": {
+                                                                                "value": {
+                                                                                     "NUMBER": "1"
+                                                                                },
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Twig"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Smoke"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Earth"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "#"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Support"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "ADJ_PRED": {
+                                                  "value": {
+                                                       "NUMBER": "1"
+                                                  },
+                                                  "children": [{
+                                                       "STATE_REF": {
+                                                            "value": {
+                                                                 "IDENTIFIER": "Fire"
+                                                            },
+                                                            "children": []
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Magma"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Magma"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "&"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Support"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Burner"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "NOT": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "1"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Fire"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "NOT": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "2"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Magma"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Earth"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Steam"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "s"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Passthru"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Steamy"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": []
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Smoke"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "@"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Passthru"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Steamy"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": []
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Bubble"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "o"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Passthru"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Steamy"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": []
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Fish"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "f"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": []
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "NOT": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "1"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Water"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "NOT": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "8"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Fish"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Air"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }, {
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "or"
+                                                  },
+                                                  "children": [{
+                                                       "ADJ_PRED": {
+                                                            "value": {
+                                                                 "NUMBER": "4"
+                                                            },
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Fish"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "ADJ_PRED": {
+                                                            "value": {
+                                                                 "NUMBER": "7"
+                                                            },
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Water"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Water"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "OnePebble"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "."
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Fallable"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "^"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "OnePebble"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "v"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "CLASS_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Support"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "TwoPebble"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "TwoPebble"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": ":"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Fallable"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Support"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": []
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Spark"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "*"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Support"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Burner"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Tail"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Tail"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "-"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Support"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Wire"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Wire"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "="
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Support"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "ADJ_PRED": {
+                                                            "value": {
+                                                                 "NUMBER": "1"
+                                                            },
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Spark"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "NOT": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "3"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "Spark"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Spark"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "DuctTape"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "D"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Support"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Flammable"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "or"
+                                                  },
+                                                  "children": [{
+                                                       "NOT": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "ADJ_PRED": {
+                                                                      "value": {
+                                                                           "NUMBER": "2"
+                                                                      },
+                                                                      "children": [{
+                                                                           "STATE_REF": {
+                                                                                "value": {
+                                                                                     "IDENTIFIER": "DuctTape"
+                                                                                },
+                                                                                "children": []
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "NOT": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "BIN_OP": {
+                                                                      "value": {
+                                                                           "BINARYOP": "and"
+                                                                      },
+                                                                      "children": [{
+                                                                           "ADJ_PRED": {
+                                                                                "value": {
+                                                                                     "NUMBER": "1"
+                                                                                },
+                                                                                "children": [{
+                                                                                     "STATE_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "DuctTape"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }, {
+                                                                           "ADJ_PRED": {
+                                                                                "value": {
+                                                                                     "NUMBER": "1"
+                                                                                },
+                                                                                "children": [{
+                                                                                     "CLASS_REF": {
+                                                                                          "value": {
+                                                                                               "IDENTIFIER": "Support"
+                                                                                          },
+                                                                                          "children": []
+                                                                                     }
+                                                                                }]
+                                                                           }
+                                                                      }]
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "UnravelTape"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "UnravelTape"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "O"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Fallable"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Flammable"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": []
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Twig"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "l"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Fallable"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Support"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Flammable"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": []
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Zappy"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "z"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Passthru"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Burner"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "BigZappy"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "BigZappy"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "Z"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Passthru"
+                                        },
+                                        "children": []
+                                   }
+                              }, {
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Burner"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "Air"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Randomizer"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "?"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": [{
+                                   "CLASS_REF": {
+                                        "value": {
+                                             "IDENTIFIER": "Support"
+                                        },
+                                        "children": []
+                                   }
+                              }]
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": []
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "ConveyorLeft"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "<"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": []
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "v"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Randomizer"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "BOOL_CONST": {
+                                                            "value": {
+                                                                 "BOOL_CONST": "guess"
+                                                            },
+                                                            "children": []
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "ConveyorRight"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "ConveyorRight"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": ">"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": []
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": [{
+                                   "RULE": {
+                                        "value": null,
+                                        "children": [{
+                                             "BIN_OP": {
+                                                  "value": {
+                                                       "BINARYOP": "and"
+                                                  },
+                                                  "children": [{
+                                                       "REL_PRED": {
+                                                            "value": null,
+                                                            "children": [{
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "ARROWCHAIN": "v"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }, {
+                                                                 "STATE_REF": {
+                                                                      "value": {
+                                                                           "IDENTIFIER": "Randomizer"
+                                                                      },
+                                                                      "children": []
+                                                                 }
+                                                            }]
+                                                       }
+                                                  }, {
+                                                       "BOOL_CONST": {
+                                                            "value": {
+                                                                 "BOOL_CONST": "guess"
+                                                            },
+                                                            "children": []
+                                                       }
+                                                  }]
+                                             }
+                                        }, {
+                                             "STATE_REF": {
+                                                  "value": {
+                                                       "IDENTIFIER": "ConveyorLeft"
+                                                  },
+                                                  "children": []
+                                             }
+                                        }]
+                                   }
+                              }]
+                         }
+                    }]
+               }
+          }, {
+               "STATE_DEFN": {
+                    "value": {
+                         "IDENTIFIER": "Torch"
+                    },
+                    "children": [{
+                         "COLOR": {
+                              "value": {
+                                   "HEXNUMBER": "T"
+                              },
+                              "children": []
+                         }
+                    }, {
+                         "MEMBERSHIP_DECL": {
+                              "value": null,
+                              "children": []
+                         }
+                    }, {
+                         "RULES": {
+                              "value": null,
+                              "children": []
+                         }
+                    }]
+               }
+          }]
+     }
+}
