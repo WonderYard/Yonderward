@@ -1,0 +1,44 @@
+class element
+{
+neigh: (0,1) (0,-1) (1,0) (-1,0) (1,1) (1,-1) (-1,1) (-1,-1);
+rules: become alive when alive = 3 or air < 2 and air < 2 or air < 2 or air < 2 or air < 2 or air < 2;
+}
+
+
+cell fire
+{
+repr:  #121; 
+neigh: (0,1) (0,-1) (1,0);
+rules: become alive when alive = 3 or air < 2 and air < 2 or air < 2 or air < 2 or air < 2 or air < 2;
+}
+
+cell water
+{
+repr:   blue;
+rules:  become air when sandstorm > 999 or air < 2;
+		become fire when air > 3 or air < 2;
+		become water when element > 90 or air < 2;
+		become sandstorm when fire = 0;
+neigh:  ^<>>>vv ^vv<><< ^^^^^;
+}
+
+cell air
+{
+repr:  black;
+rules: become alive when alive = 3; 
+	   become water when element > 90 or air < 2;
+       become water when element > 90 or air < 2;
+neigh: (0,1) (0,-1) (1,0) (-1,0) (1,1) (1,-1) (-1,1) (-1,-1);
+
+}
+
+cell sandstorm
+{
+repr:  black; 
+neigh: (0,1) (0,-1) (1,0) (-1,0) (1,1) (1,-1) (-1,1) (-1,-1);
+rules: become alive when alive = 3;
+}
+
+class wssup
+{
+}

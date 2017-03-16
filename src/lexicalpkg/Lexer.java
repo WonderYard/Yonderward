@@ -1,97 +1,37 @@
 package lexicalpkg;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class Lexer
 {
-	public static enum TokenType 
-	{
-		NEWLINE("\n", true),
-		WHITESPACE("\\s+", true),
-		COMMENT_MULTI("\\/\\*[\\s\\S]*?\\*\\/", true),
 
-		NUMBER("-?[0-9]+"),
-		BINARYOP("(xor|and|or)\\b"),
-		EVOLVE("evolve\\b"), 
-		STATE("state\\b"),
-		NEIGHBORHOOD("neighborhood\\b"),
-		CLASS("class\\b"),
-		IS("is\\b"),
-		TO("to\\b"),
-		ME("me\\b"),
-		WHEN("when\\b"),
-		COMMA(","),
-		SEMICOLON(";"),
-		EQUAL("="),
-		IN("in\\b"),
-		NOT("not\\b"),
-		BOOL_CONST("(true|false|guess)\\b"),
-		ARROWCHAIN("[\\^<v>]+"),
-		IDENTIFIER("([a-zA-Z][0-9a-zA-Z]*)\\b"),
-		LEFTP("\\("),
-		RIGHTP("\\)"),
-		LEFTPS("\\["),
-		RIGHTPS("\\]"),
-		//HEXNUMBER("\".\""),
-		HEXNUMBER("#(?:[0-9a-fA-F]{3}){1,2}\\b"),
-		
-		EOF("$");
-		
-		public final Pattern pattern;
-		private boolean ignore;
-		
-		private TokenType(String pattern) 
-		{
-			this.pattern = Pattern.compile(pattern);
-		}
-		
-		private TokenType(String pattern, boolean ignore)
-		{
-			this(pattern);
-			this.ignore = ignore;
-		}
-	}
-
-	public static class Token 
-	{
-		public TokenType type;
-		public String data;
-
-		public Token(TokenType type, String data)
-		{
-			this.type = type;
-			this.data = data;
-//			System.out.println(this);
-		}
-
-		@Override
-		public String toString() 
-		{
-			if(type.equals(TokenType.HEXNUMBER)) return data.replace("\"", "");
-			return String.format("{\"%s\": \"%s\"}", type.name(), data);
-		}
-	}
-	
-	private String text;
 	private Token currToken;
+	private String text;
 	private int index;
-	private int lineNumberBuffer, lineNumber, colNumber;
-	private int colNumberBuffer;
+	private int line;
 	
-	public void init(String text) throws InvalidTokenException
+	public Lexer(String text) throws InvalidTokenException
 	{
 		this.text = text;
-		this.index = 0;
-		this.lineNumberBuffer = 1;
-		this.lineNumber = 0;
-		this.colNumber = 0;
-		nextToken();
+		line=1;
+		index=0;
 	}
 	
-	private Token nextToken() throws InvalidTokenException 
-	{	
-		for (TokenType tokenType : TokenType.values())
+	public Token get()
+	{
+		return currToken; 
+	}
+	
+	public boolean search(TokenType... l) 
+	{
+		//System.out.println(currToken);
+		l=Arrays.copyOf(l, l.length+2);
+		l[l.length-2]=TokenType.NEWLINE;
+		l[l.length-1]=TokenType.WHITESPACE;
+		
+		for (TokenType tokenType : l)
 	    {
 			Matcher match = tokenType.pattern.matcher(text);
 			match.region(index, text.length());
@@ -99,61 +39,30 @@ public class Lexer
 			{
 				String group = match.group();
 				index += group.length();
-				colNumberBuffer += group.length();
 				if(tokenType.ignore)
 				{
-					if(tokenType.equals(TokenType.NEWLINE))
-					{
-						lineNumberBuffer++;
-						colNumberBuffer = 1;
-					}
-					else if(tokenType.equals(TokenType.COMMENT_MULTI))
-					{
-						lineNumberBuffer += group.split("\n").length - 1;
-					}
-					return nextToken();
+					if(tokenType==TokenType.NEWLINE){line++;}
+					return search(l);
 				}
-				return currToken = new Token(tokenType, group);
+				currToken= new Token(tokenType, group);
+				return true;
 			}
 	    }
-	    throw new InvalidTokenException();
-	}
-
-	public boolean on(TokenType... types)
-	{
-		for(TokenType type : types)
-		{
-			if(currToken.type.equals(type)) return true;
-		}
 		return false;
 	}
 	
-	Token expect(TokenType type) throws InvalidTokenException, UnexpectedTokenException
+	
+	public void expect(TokenType... l) throws InvalidTokenException
 	{
-		if(on(type))
-		{
-			lineNumber = lineNumberBuffer;
-			colNumber = colNumberBuffer;
-			
-			Token t = currToken;
-			nextToken();
-			return t;
-		}
-		throw new UnexpectedTokenException(this, type);
+		int errLine=line; 
+		if(!search(l)) throw new InvalidTokenException("Syntax error at line: "+errLine +" expected: "+Arrays.toString(l));
 	}
+		
+	
+	public void expect(ArrayList<TokenType> l) throws InvalidTokenException{ expect(l.toArray(new TokenType[l.size()])); }
+	public boolean search() { return search(TokenType.values()); }
+	public boolean search(ArrayList<TokenType> l) { return search(l.toArray(new TokenType[l.size()])); }
+	
 
-	public int lineNumber()
-	{
-		return lineNumber;
-	}
-	
-	public int colNumber()
-	{
-		return colNumber;
-	}
-	
-	public Token currToken()
-	{
-		return currToken;
-	}
+
 }

@@ -1,0 +1,14 @@
+cell dead
+{
+repr:  black; 
+neigh: (0,1) (0,-1) (1,0) (-1,0) (1,1) (1,-1) (-1,1) (-1,-1);
+rules: become alive when alive = 3;
+}
+
+cell alive
+{
+repr:  white;
+rules: become death when alive > 3 or alive < 2;
+neigh: (0,1) (0,-1) (1,0) (-1,0) (1,1) (1,-1) (-1,1) (-1,-1);
+}
+

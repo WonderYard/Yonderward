@@ -1,0 +1,11 @@
+cell animal
+{
+repr: brown
+rules: become void when void = 1 in (-1,0)
+}
+
+cell void
+{
+repr : white 
+rules: become animal when animal = 1 in (1,0)
+}

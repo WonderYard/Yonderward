@@ -1,0 +1,12 @@
+cell water 
+{
+repr: blue;
+rules: become void when void = 1 in ^;
+}
+
+
+cell void 
+{
+repr: white;
+rules: become water when water = 1 in ^;
+}
